@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tokens:
+    name: Tokens (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: The dist files are what the source generates
+        run: node tools/design-tokens.mjs --check
+
+  no-dependencies:
+    name: No runtime dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: package.json declares no dependencies
+        run: |
+          node -e '
+            const p = JSON.parse(require("fs").readFileSync("package.json", "utf8"));
+            const kinds = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"];
+            const found = kinds.filter((k) => p[k] && Object.keys(p[k]).length > 0);
+            if (found.length) { console.log("FOUND -- package.json declares " + found.join(", ")); process.exit(1); }
+            console.log("CLEAR -- 0 of " + kinds.length + " dependency kinds declared");
+          '
+      - name: The generator imports Node built-ins only
+        run: |
+          node -e '
+            const src = require("fs").readFileSync("tools/design-tokens.mjs", "utf8");
+            const imports = [...src.matchAll(/from\s+["\x27]([^"\x27]+)["\x27]/g)].map((m) => m[1]);
+            const outside = imports.filter((s) => !s.startsWith("node:"));
+            if (outside.length) { console.log("FOUND -- imports outside node: " + outside.join(", ")); process.exit(1); }
+            console.log("CLEAR -- " + imports.length + " of " + imports.length + " imports are node: built-ins");
+          '
