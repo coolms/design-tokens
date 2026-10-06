@@ -1,6 +1,6 @@
 {
   "name": "@coolms/design-tokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The CoolMS design tokens: one source, generated into CSS custom properties and a React Native module",
   "license": "MIT",
   "private": true,

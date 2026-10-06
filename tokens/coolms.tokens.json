@@ -324,6 +324,46 @@
                 }
             }
         },
+        "chrome-danger": {
+            "$type": "color",
+            "$value": "#dc2626",
+            "$description": "A destructive or ending action on the navy chrome -- a call's Decline and Hang up: 3.27:1 against the chrome in light, 3.55:1 in dark. The light scheme's danger red, the same in both schemes.",
+            "$extensions": {
+                "org.coolms": {
+                    "invariant": "the chrome is navy in both schemes"
+                }
+            }
+        },
+        "chrome-danger-fg": {
+            "$type": "color",
+            "$value": "#ffffff",
+            "$description": "Text and icons on chrome-danger: 4.83:1.",
+            "$extensions": {
+                "org.coolms": {
+                    "invariant": "the chrome is navy in both schemes"
+                }
+            }
+        },
+        "chrome-success": {
+            "$type": "color",
+            "$value": "#15803d",
+            "$description": "An accepting action on the navy chrome -- a call's Answer: 3.15:1 against the chrome in light, 3.42:1 in dark. Darker than success (#16a34a), which takes white text at only 3.30:1.",
+            "$extensions": {
+                "org.coolms": {
+                    "invariant": "the chrome is navy in both schemes"
+                }
+            }
+        },
+        "chrome-success-fg": {
+            "$type": "color",
+            "$value": "#ffffff",
+            "$description": "Text and icons on chrome-success: 5.02:1.",
+            "$extensions": {
+                "org.coolms": {
+                    "invariant": "the chrome is navy in both schemes"
+                }
+            }
+        },
         "success": {
             "$type": "color",
             "$value": "#16a34a",
