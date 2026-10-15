@@ -50,3 +50,7 @@ jobs:
             if (outside.length) { console.log("FOUND -- imports outside node: " + outside.join(", ")); process.exit(1); }
             console.log("CLEAR -- " + imports.length + " of " + imports.length + " imports are node: built-ins");
           '
+
+  # README, a LICENSE matching package.json, and CHANGELOG (coolms/.github's basic-files.yml), pinned to a commit.
+  basic-files:
+    uses: coolms/.github/.github/workflows/basic-files.yml@5da5c366d94dc98dd79ff6cb0708b284796e7951
