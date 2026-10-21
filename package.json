@@ -10,7 +10,7 @@
     "url": "https://github.com/coolms/design-tokens.git"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12"
   },
   "scripts": {
     "build": "node tools/design-tokens.mjs",

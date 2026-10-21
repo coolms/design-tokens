@@ -2,6 +2,11 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## Unreleased
+
+- Changed, **breaking**: requires Node 22.12 or later. `engines.node` moves from `>=22` to `>=22.12`, the line the
+  estate's packages share, and CI runs on Node 22 and 24. The tokens and the generated files do not change.
+
 ## 0.3.0 (2026-10-21)
 
 Text on an accent fill under the name a component already used for it. 106 tokens. Nothing existing changed.
