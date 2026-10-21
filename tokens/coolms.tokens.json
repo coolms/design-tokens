@@ -51,6 +51,11 @@
                 }
             }
         },
+        "accent-contrast": {
+            "$type": "color",
+            "$value": "{cms.accent-fg}",
+            "$description": "Text on an accent fill, by the name a component may already use for it (the toast's count badge, 2026-10-21): the accent-fg token."
+        },
         "selected": {
             "$type": "color",
             "$value": "{cms.accent}"

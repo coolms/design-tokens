@@ -2,6 +2,14 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## 0.3.0 (2026-10-21)
+
+Text on an accent fill under the name a component already used for it. 106 tokens. Nothing existing changed.
+
+- Added: `accent-contrast`, an alias of `accent-fg` (#1a1a1a, 8.59:1 on the accent), in both schemes. The admin's
+  toast count badge asked for `--cms-accent-contrast`, which nothing defined, so it painted its own fallback: white
+  on the amber, 2.03:1. With this token it is 8.59:1.
+
 ## 0.2.0 (2026-10-07)
 
 Danger and success on the navy chrome, each a fill with its text colour, for the buttons of a call panel: Decline

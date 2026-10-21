@@ -8,3 +8,5 @@
 5. Add a line to [CHANGELOG.md](CHANGELOG.md) under the next version.
 
 The repository is pull-request only: nothing is pushed to `develop` or `main` directly.
+
+Versioning, deprecations and releases: see the [CoolMS contributing guide](https://github.com/coolms/.github/blob/develop/CONTRIBUTING.md).
