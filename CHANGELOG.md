@@ -4,8 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-- Changed, **breaking**: requires Node 22.12 or later. `engines.node` moves from `>=22` to `>=22.12`, the line the
-  estate's packages share, and CI runs on Node 22 and 24. The tokens and the generated files do not change.
+- Changed, **breaking**: requires Node 22, 24 or 26. `engines.node` moves from `>=22` to
+  `^22.0.0 || ^24.0.0 || ^26.0.0`, exactly the Node lines CI runs; the odd lines and Node 27 and later are not
+  declared until CI runs them, and CI checks the range against its matrix. The package has no dependencies, so no
+  floor within a line is higher than its first release. The tokens and the generated files do not change.
 
 ## 0.3.0 (2026-10-21)
 
