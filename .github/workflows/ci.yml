@@ -21,6 +21,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      # engines.node names exactly the Node lines this matrix runs (no open
+      # ">=22"). The package has no dependencies, so no floor is higher than a
+      # line's first release; npm's own semver reads the ranges.
+      - name: Engines, against the matrix
+        run: node tools/engines-check.mjs
       - name: The dist files are what the source generates
         run: node tools/design-tokens.mjs --check
 
