@@ -53,6 +53,35 @@ The consumer's CI checks two things:
 
 To move to a new version, a consumer opens a pull request that changes the lock and the copy together.
 
+## The UI contract
+
+The tokens say how CoolMS looks. The contract says what every CoolMS UI kit must provide, so kits for different
+frameworks cannot drift apart either.
+
+| Path | What it is |
+|---|---|
+| `contract/components.json` | Every component a kit provides, by name, and the states each must render. |
+| `contract/server-states.json` | Every state the server decides that a client can reach. For each: where it is read, what no client may do, and the reactions every client gives (R1 to R6, written once here). |
+| `tools/check-kit.mjs` | The checker. Node built-ins only. |
+
+A kit declares, in its own `kit.contract.json`:
+- which of its components implements each contract entry, and the states it renders;
+- where it implements each server state's reactions;
+- with a reason, any component it does not offer on purpose.
+
+```sh
+node tools/check-kit.mjs <kit.contract.json>
+```
+
+| Exit code | Meaning |
+|---|---|
+| 0 | CLEAR: the kit covers every entry |
+| 1 | FOUND: each gap is named |
+| 2 | UNEVALUABLE: a file could not be read. A kit that could not be read is never reported as covering the contract. |
+
+A kit copies the two contract files and the checker at a tagged version, and records them in its
+`design-tokens.lock.json` beside the token file, exactly as for the tokens.
+
 ## Versions
 
 Versions follow [semantic versioning](https://semver.org/): a removed or renamed token is a major change, an added
