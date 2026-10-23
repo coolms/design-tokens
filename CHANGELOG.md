@@ -2,6 +2,22 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## 0.4.0 (2026-10-23)
+
+The UI contract moves here, beside the tokens. 106 tokens; no token or generated file changes.
+
+- Added: the UI contract, beside the tokens, so every CoolMS UI kit checks against one source.
+  - `contract/components.json` lists the 16 components every kit provides, and the states each must render.
+  - `contract/server-states.json` lists the 9 server-decided states, and reactions R1 to R6 every client gives to
+    them.
+  - `tools/check-kit.mjs <kit.contract.json>` answers whether a kit's declaration covers both.
+  - They are the package's own exports: `./contract/components.json`, `./contract/server-states.json` and
+    `./check-kit`. The tokens are exported as `./tokens.scss` and `./tokens.ts`.
+- Changed, **breaking**: requires Node 22, 24 or 26. `engines.node` moves from `>=22` to
+  `^22.0.0 || ^24.0.0 || ^26.0.0`, exactly the Node lines CI runs; the odd lines and Node 27 and later are not
+  declared until CI runs them, and CI checks the range against its matrix. The package has no dependencies, so no
+  floor within a line is higher than its first release. The tokens and the generated files do not change.
+
 ## 0.3.0 (2026-10-21)
 
 Text on an accent fill under the name a component already used for it. 106 tokens. Nothing existing changed.

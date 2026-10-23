@@ -15,12 +15,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['22', '24']
+        node: ['22', '24', '26']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      # engines.node names exactly the Node lines this matrix runs (no open
+      # ">=22"). The package has no dependencies, so no floor is higher than a
+      # line's first release; npm's own semver reads the ranges.
+      - name: Engines, against the matrix
+        run: node tools/engines-check.mjs
       - name: The dist files are what the source generates
         run: node tools/design-tokens.mjs --check
 
@@ -45,6 +50,34 @@ jobs:
         run: |
           node -e '
             const src = require("fs").readFileSync("tools/design-tokens.mjs", "utf8");
+            const imports = [...src.matchAll(/from\s+["\x27]([^"\x27]+)["\x27]/g)].map((m) => m[1]);
+            const outside = imports.filter((s) => !s.startsWith("node:"));
+            if (outside.length) { console.log("FOUND -- imports outside node: " + outside.join(", ")); process.exit(1); }
+            console.log("CLEAR -- " + imports.length + " of " + imports.length + " imports are node: built-ins");
+          '
+
+  contract:
+    name: The UI contract and its checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      # The checker must answer FOUND (exit 1) on a kit that lacks things, and UNEVALUABLE (exit 2) when it has no
+      # kit to read: a checker that says CLEAR to both checks nothing.
+      - name: The checker finds the gaps of its control kit
+        run: |
+          set +e
+          node tools/check-kit.mjs tests/broken-kit.contract.json; rc=$?
+          [ "$rc" = 1 ] || { echo "FOUND -- expected exit 1 on the control kit, got $rc"; exit 1; }
+          node tools/check-kit.mjs; rc=$?
+          [ "$rc" = 2 ] || { echo "FOUND -- expected exit 2 with no kit, got $rc"; exit 1; }
+          echo "CLEAR -- control kit FOUND (1), no kit UNEVALUABLE (2)"
+      - name: The checker imports Node built-ins only
+        run: |
+          node -e '
+            const src = require("fs").readFileSync("tools/check-kit.mjs", "utf8");
             const imports = [...src.matchAll(/from\s+["\x27]([^"\x27]+)["\x27]/g)].map((m) => m[1]);
             const outside = imports.filter((s) => !s.startsWith("node:"));
             if (outside.length) { console.log("FOUND -- imports outside node: " + outside.join(", ")); process.exit(1); }
