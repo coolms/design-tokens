@@ -28,6 +28,26 @@ jobs:
         run: node tools/engines-check.mjs
       - name: The dist files are what the source generates
         run: node tools/design-tokens.mjs --check
+      - name: The stylesheet is CSS a browser keeps whole
+        run: node tools/check-css.mjs dist/coolms-tokens.css
+      # The check has teeth: a `//` header, as SCSS writes it, must fail it.
+      - name: The stylesheet check refuses a // header
+        run: |
+          set +e
+          node tools/check-css.mjs tests/broken-tokens.css; rc=$?
+          [ "$rc" = 1 ] || { echo "FOUND -- expected exit 1 on tests/broken-tokens.css, got $rc"; exit 1; }
+          node tools/check-css.mjs tests/no-such-file.css; rc=$?
+          [ "$rc" = 2 ] || { echo "FOUND -- expected exit 2 with no file, got $rc"; exit 1; }
+          echo "CLEAR -- a // header FOUND (1), no file UNEVALUABLE (2)"
+      - name: The stylesheet check imports Node built-ins only
+        run: |
+          node -e '
+            const src = require("fs").readFileSync("tools/check-css.mjs", "utf8");
+            const imports = [...src.matchAll(/from\s+["\x27]([^"\x27]+)["\x27]/g)].map((m) => m[1]);
+            const outside = imports.filter((s) => !s.startsWith("node:"));
+            if (outside.length) { console.log("FOUND -- imports outside node: " + outside.join(", ")); process.exit(1); }
+            console.log("CLEAR -- " + imports.length + " of " + imports.length + " imports are node: built-ins");
+          '
 
   no-dependencies:
     name: No runtime dependencies
