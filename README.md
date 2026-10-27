@@ -12,6 +12,7 @@ apart.
 | `dist/coolms-tokens.scss` | CSS custom properties: a `:root` block for the light scheme and a `:root[data-theme='dark']` block for what changes in the dark one. |
 | `dist/coolms-tokens.css` | The same two blocks for a page that reads them as CSS, its header a CSS comment. A web kit copies this one: the SCSS file's `//` header is not CSS, and a browser drops the `:root` block behind it. `tools/check-css.mjs` checks a copy. |
 | `dist/coolms-tokens.ts` | A plain-data module for React Native: `light`, `dark`, `radius` and `accent`, with no runtime code. |
+| `fonts/inter.css`, `fonts/*.woff2` | Inter, self-hosted: one variable woff2 per subset (Latin, Latin Extended, Cyrillic), weights 400 to 700, 152,072 bytes in all; `inter.css` declares them with `unicode-range`, so a page loads only what it uses. SIL Open Font License 1.1, in `fonts/OFL.txt`. React Native cannot load woff2; the app needs the same font as TTF. |
 
 Never edit a file in `dist/` by hand. Change the source, then regenerate.
 

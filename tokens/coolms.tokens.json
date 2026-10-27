@@ -284,7 +284,7 @@
         },
         "text-muted": {
             "$type": "color",
-            "$value": "#69707c",
+            "$value": "#4b5563",
             "$extensions": {
                 "org.coolms": {
                     "dark": "#8a99b0"
@@ -398,7 +398,7 @@
         },
         "danger": {
             "$type": "color",
-            "$value": "#dc2626",
+            "$value": "#b91c1c",
             "$extensions": {
                 "org.coolms": {
                     "dark": "#ef4444"
@@ -810,6 +810,294 @@
         "row-height-lg": {
             "$type": "dimension",
             "$value": "48px"
+        },
+        "row-selected": {
+            "$type": "color",
+            "$value": "#eef2f7",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#243450"
+                }
+            },
+            "$description": "A selected row in a list: mail, chat, files. Not the accent: the admin keeps its amber selection."
+        },
+        "border-input": {
+            "$type": "color",
+            "$value": "#8b929c",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#6b7f96"
+                }
+            },
+            "$description": "A field's boundary: 3:1 against its background (WCAG 1.4.11)."
+        },
+        "success-strong": {
+            "$type": "color",
+            "$value": "#15803d",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#4ade80"
+                }
+            },
+            "$description": "Green as text (\"Online\", \"Good connection\"): 4.5:1 where success itself is not."
+        },
+        "avatar-1-bg": {
+            "$type": "color",
+            "$value": "#dbeafe",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#1e3a8a"
+                }
+            }
+        },
+        "avatar-1-fg": {
+            "$type": "color",
+            "$value": "#1e3a8a",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#dbeafe"
+                }
+            }
+        },
+        "avatar-2-bg": {
+            "$type": "color",
+            "$value": "#dcfce7",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#14532d"
+                }
+            }
+        },
+        "avatar-2-fg": {
+            "$type": "color",
+            "$value": "#14532d",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#dcfce7"
+                }
+            }
+        },
+        "avatar-3-bg": {
+            "$type": "color",
+            "$value": "#fef3c7",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#78350f"
+                }
+            }
+        },
+        "avatar-3-fg": {
+            "$type": "color",
+            "$value": "#78350f",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#fef3c7"
+                }
+            }
+        },
+        "avatar-4-bg": {
+            "$type": "color",
+            "$value": "#fce7f3",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#831843"
+                }
+            }
+        },
+        "avatar-4-fg": {
+            "$type": "color",
+            "$value": "#831843",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#fce7f3"
+                }
+            }
+        },
+        "avatar-5-bg": {
+            "$type": "color",
+            "$value": "#ede9fe",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#4c1d95"
+                }
+            }
+        },
+        "avatar-5-fg": {
+            "$type": "color",
+            "$value": "#4c1d95",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#ede9fe"
+                }
+            }
+        },
+        "avatar-6-bg": {
+            "$type": "color",
+            "$value": "#e5e7eb",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#374151"
+                }
+            }
+        },
+        "avatar-6-fg": {
+            "$type": "color",
+            "$value": "#1f2937",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#e5e7eb"
+                }
+            }
+        },
+        "font-sans": {
+            "$type": "fontFamily",
+            "$value": "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+            "$description": "Inter, self-hosted from fonts/ (OFL-1.1); the system stack is the fallback."
+        },
+        "font-weight-regular": {
+            "$type": "fontWeight",
+            "$value": 400
+        },
+        "font-weight-medium": {
+            "$type": "fontWeight",
+            "$value": 500
+        },
+        "font-weight-semibold": {
+            "$type": "fontWeight",
+            "$value": 600
+        },
+        "font-weight-bold": {
+            "$type": "fontWeight",
+            "$value": 700
+        },
+        "font-size-label-sm": {
+            "$type": "dimension",
+            "$value": "11px"
+        },
+        "font-size-label": {
+            "$type": "dimension",
+            "$value": "12px"
+        },
+        "font-size-meta": {
+            "$type": "dimension",
+            "$value": "13px"
+        },
+        "font-size-body": {
+            "$type": "dimension",
+            "$value": "14px"
+        },
+        "font-size-body-lg": {
+            "$type": "dimension",
+            "$value": "15px"
+        },
+        "font-size-title-sm": {
+            "$type": "dimension",
+            "$value": "16px"
+        },
+        "font-size-title-md": {
+            "$type": "dimension",
+            "$value": "18px"
+        },
+        "font-size-title-lg": {
+            "$type": "dimension",
+            "$value": "22px"
+        },
+        "font-size-display-sm": {
+            "$type": "dimension",
+            "$value": "28px"
+        },
+        "font-size-display-lg": {
+            "$type": "dimension",
+            "$value": "36px"
+        },
+        "line-height-tight": {
+            "$type": "number",
+            "$value": 1.25
+        },
+        "line-height-body": {
+            "$type": "number",
+            "$value": 1.5
+        },
+        "radius-control": {
+            "$type": "dimension",
+            "$value": "10px",
+            "$description": "Buttons and rows."
+        },
+        "radius-field": {
+            "$type": "dimension",
+            "$value": "12px",
+            "$description": "Inputs."
+        },
+        "radius-card": {
+            "$type": "dimension",
+            "$value": "12px",
+            "$description": "Cards and panels."
+        },
+        "radius-bubble": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$description": "Chat bubbles."
+        },
+        "radius-bubble-tail": {
+            "$type": "dimension",
+            "$value": "4px",
+            "$description": "The corner of a chat bubble nearest its sender."
+        },
+        "radius-dialog": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$description": "Dialogs and the incoming call."
+        },
+        "radius-pill": {
+            "$type": "dimension",
+            "$value": "9999px",
+            "$description": "Pills, filters, counters."
+        },
+        "space-1": {
+            "$type": "dimension",
+            "$value": "4px"
+        },
+        "space-2": {
+            "$type": "dimension",
+            "$value": "8px"
+        },
+        "space-3": {
+            "$type": "dimension",
+            "$value": "12px"
+        },
+        "space-4": {
+            "$type": "dimension",
+            "$value": "16px"
+        },
+        "space-5": {
+            "$type": "dimension",
+            "$value": "20px"
+        },
+        "space-6": {
+            "$type": "dimension",
+            "$value": "24px"
+        },
+        "space-8": {
+            "$type": "dimension",
+            "$value": "32px"
+        },
+        "space-10": {
+            "$type": "dimension",
+            "$value": "40px"
+        },
+        "space-12": {
+            "$type": "dimension",
+            "$value": "48px"
+        },
+        "rail-width": {
+            "$type": "dimension",
+            "$value": "80px",
+            "$description": "The Workspace's app rail."
+        },
+        "topbar-height": {
+            "$type": "dimension",
+            "$value": "64px",
+            "$description": "The Workspace's top bar."
         }
     }
 }
