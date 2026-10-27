@@ -10,7 +10,7 @@ The tokens of the Workspace's look, and Inter. 156 tokens (50 new); two values c
   `danger` #dc2626 to #b91c1c (6.5:1). Their dark values do not change.
 - Added: `row-selected` (a selected row in a list; the admin keeps its amber selection), `border-input` #8b929c (a
   field's boundary, 3.1:1 on white), `success-strong` #15803d (green as text, 5.0:1; `success` stays for dots).
-- Added: six avatar pairs, `avatar-1-bg` / `avatar-1-fg` to `avatar-6-*`, a light tint with dark initials (8.2:1 or
+- Added: six avatar pairs, `avatar-1-bg` / `avatar-1-fg` to `avatar-6-*`, a light tint with dark initials (8.1:1 or
   more), inverted in dark.
 - Added: the type scale -- `font-sans` (Inter, then the system stack), `font-weight-regular` / `-medium` /
   `-semibold` / `-bold` (400 to 700), `font-size-label-sm` 11px to `font-size-display-lg` 36px, and two line heights.
