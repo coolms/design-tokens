@@ -2,7 +2,7 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
-## 0.5.0 (unreleased)
+## 0.5.0 (2026-10-28)
 
 A stylesheet a web page reads as CSS. 106 tokens; no token changes, and the SCSS and TypeScript files do not change.
 
@@ -13,6 +13,8 @@ A stylesheet a web page reads as CSS. 106 tokens; no token changes, and the SCSS
   as `/* ... */`, rules only `:root` and `:root[data-theme='dark']`, only `--cms-*` declarations in them, and at least
   one in `:root`. CI runs it on `dist/coolms-tokens.css`, and on `tests/broken-tokens.css`, a `//` header, which it
   must fail.
+- Changed: the LICENSE's copyright line names its holder, as the other CoolMS packages' do (it read "CoolMS"). The
+  licence, MIT, is unchanged.
 
 ## 0.4.0 (2026-10-23)
 
