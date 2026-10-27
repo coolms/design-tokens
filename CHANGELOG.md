@@ -2,6 +2,18 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## 0.5.0 (unreleased)
+
+A stylesheet a web page reads as CSS. 106 tokens; no token changes, and the SCSS and TypeScript files do not change.
+
+- Added: `dist/coolms-tokens.css`, exported as `./tokens.css`: the same `:root` and `:root[data-theme='dark']` blocks
+  as the SCSS file, with its header written as a CSS comment. The SCSS file's `//` header is a comment in SCSS but not
+  in CSS, so a page that read that file as CSS lost its whole light `:root` block.
+- Added: `tools/check-css.mjs <file>`, which refuses a token stylesheet a browser would not keep whole: comments only
+  as `/* ... */`, rules only `:root` and `:root[data-theme='dark']`, only `--cms-*` declarations in them, and at least
+  one in `:root`. CI runs it on `dist/coolms-tokens.css`, and on `tests/broken-tokens.css`, a `//` header, which it
+  must fail.
+
 ## 0.4.0 (2026-10-23)
 
 The UI contract moves here, beside the tokens. 106 tokens; no token or generated file changes.
