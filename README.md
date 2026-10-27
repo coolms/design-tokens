@@ -10,6 +10,7 @@ apart.
 | `tokens/coolms.tokens.json` | The source, in the [Design Tokens Community Group](https://tr.designtokens.org/format/) format. Each colour has a light value and either a dark value or a stated reason it does not change. |
 | `tools/design-tokens.mjs` | The generator. It reads the source and writes the two files below. |
 | `dist/coolms-tokens.scss` | CSS custom properties: a `:root` block for the light scheme and a `:root[data-theme='dark']` block for what changes in the dark one. |
+| `dist/coolms-tokens.css` | The same two blocks for a page that reads them as CSS, its header a CSS comment. A web kit copies this one: the SCSS file's `//` header is not CSS, and a browser drops the `:root` block behind it. `tools/check-css.mjs` checks a copy. |
 | `dist/coolms-tokens.ts` | A plain-data module for React Native: `light`, `dark`, `radius` and `accent`, with no runtime code. |
 
 Never edit a file in `dist/` by hand. Change the source, then regenerate.
