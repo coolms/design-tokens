@@ -9,6 +9,7 @@
 //
 // Exit 0 CLEAR, 1 FOUND (with the line of the first fault), 2 UNEVALUABLE (the file could not be read).
 import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 
 const SELECTORS = new Set([':root', ":root[data-theme='dark']"]);
 const DECLARATION = /^--cms-[a-z0-9-]+\s*:\s*[^;{}]+$/;
@@ -57,7 +58,7 @@ export function faults(text) {
     return found;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href) {
     const file = process.argv[2];
     let text;
     try {
