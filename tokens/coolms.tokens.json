@@ -99,6 +99,16 @@
                 }
             }
         },
+        "button-chrome-bg": {
+            "$type": "color",
+            "$value": "#1a2332",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#2d3f57"
+                }
+            },
+            "$description": "A navy button or selection on a page's surface -- Compose, Call, Sign in, a selected filter chip, a sent chat bubble. The chrome's navy in light; in dark a lighter navy, since the chrome's dark navy sits on the dark surface at 1.09:1."
+        },
         "sidebar-text": {
             "$type": "color",
             "$value": "#c9d3e0",
@@ -401,9 +411,10 @@
             "$value": "#b91c1c",
             "$extensions": {
                 "org.coolms": {
-                    "dark": "#ef4444"
+                    "dark": "#f87171"
                 }
-            }
+            },
+            "$description": "Red for a destructive action, and as text or an icon: 6.5:1 on white, 5.7:1 on the dark surface."
         },
         "danger-light": {
             "$type": "color",
