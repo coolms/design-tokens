@@ -2,7 +2,7 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
-## 0.6.0 (unreleased)
+## 0.6.0 (2026-10-30)
 
 The tokens of the Workspace's look, and Inter. 163 tokens (57 new); two values change, one of them in both schemes.
 
