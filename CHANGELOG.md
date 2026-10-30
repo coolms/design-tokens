@@ -2,6 +2,40 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## 0.6.0 (2026-10-30)
+
+The tokens of the Workspace's look, and Inter. 163 tokens (57 new); two values change, one of them in both schemes.
+
+- Changed, for contrast, in both the admin and the Workspace: `text-muted` #69707c to #4b5563 (7.6:1 on white), and
+  `danger` #dc2626 to #b91c1c (6.5:1). `danger`'s dark value changes too, #ef4444 to #f87171: 5.7:1 on the dark
+  surface, where #ef4444 was 4.19:1, and 6.5:1 under a danger button's dark label. `text-muted`'s dark value does not
+  change.
+- Added: `button-chrome-bg`, a navy button or selection on a page's surface (Compose, Call, Sign in, a selected
+  filter chip, a sent chat bubble): the chrome's #1a2332 in light, and #2d3f57 in dark, where the chrome's own
+  #131c28 sits on the dark surface at 1.09:1.
+- Added: `button-chrome-border`, the 1px edge of a navy button or selection: the fill itself in light, so nothing
+  shows, and #6b7f96 in dark, 3.83:1 against the surface where the fill alone is 1.47:1.
+- Added: the layout's widths, so the kit is responsive by its tokens: `breakpoint-tablet` 600px and
+  `breakpoint-desktop` 1200px (phone below 600px, tablet from 600px, desktop from 1200px), `rail-width-compact`
+  64px (the icons-only rail at tablet width), `tabbar-height` 56px (the phone's bottom tab bar) and
+  `touch-target-min` 44px (the smallest touch target at touch widths).
+- Added: `row-selected` (a selected row in a list; the admin keeps its amber selection), `border-input` #8b929c (a
+  field's boundary, 3.1:1 on white), `success-strong` #15803d (green as text, 5.0:1; `success` stays for dots).
+- Added: six avatar pairs, `avatar-1-bg` / `avatar-1-fg` to `avatar-6-*`, a light tint with dark initials (8.1:1 or
+  more), inverted in dark.
+- Added: the type scale -- `font-sans` (Inter, then the system stack), `font-weight-regular` / `-medium` /
+  `-semibold` / `-bold` (400 to 700), `font-size-label-sm` 11px to `font-size-display-lg` 36px, and two line heights.
+- Added: radii by use -- `radius-control` 10px (buttons, rows), `radius-field` 12px, `radius-card` 12px,
+  `radius-bubble` 16px with `radius-bubble-tail` 4px, `radius-dialog` 24px, `radius-pill`. The size radii
+  (`radius-sm` to `radius-lg`) stay for the admin.
+- Added: the spacing scale `space-1` to `space-12` (4px to 48px, on 4 and 8), and the Workspace's `rail-width` 80px
+  and `topbar-height` 64px.
+- Every new colour has a dark value.
+- Added: Inter, self-hosted under the SIL Open Font License 1.1 (`fonts/OFL.txt`): one variable woff2 per subset --
+  Latin (48,256 bytes), Latin Extended (85,068) and Cyrillic (18,748), 152,072 bytes for weights 400 to 700 -- and
+  `fonts/inter.css`, whose `unicode-range` lets a browser fetch only the subsets a page uses. Exported as
+  `./fonts/inter.css` and `./fonts/*`.
+
 ## 0.5.0 (2026-10-28)
 
 A stylesheet a web page reads as CSS. 106 tokens; no token changes, and the SCSS and TypeScript files do not change.
