@@ -109,6 +109,16 @@
             },
             "$description": "A navy button or selection on a page's surface -- Compose, Call, Sign in, a selected filter chip, a sent chat bubble. The chrome's navy in light; in dark a lighter navy, since the chrome's dark navy sits on the dark surface at 1.09:1."
         },
+        "button-chrome-border": {
+            "$type": "color",
+            "$value": "#1a2332",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#6b7f96"
+                }
+            },
+            "$description": "The 1px edge of a navy button or selection (button-chrome-bg). In light it is the fill itself, so nothing shows. In dark the navy fill sits on the dark surface at 1.47:1, so the edge is drawn: 3.83:1 against the surface and 4.38:1 against the page (WCAG 1.4.11)."
+        },
         "sidebar-text": {
             "$type": "color",
             "$value": "#c9d3e0",
@@ -1104,6 +1114,31 @@
             "$type": "dimension",
             "$value": "80px",
             "$description": "The Workspace's app rail."
+        },
+        "breakpoint-tablet": {
+            "$type": "dimension",
+            "$value": "600px",
+            "$description": "From this width up, the tablet layout: the app rail shows icons only and two panes show side by side. Below it, the phone layout: a bottom tab bar and one pane at a time. A custom property cannot be read in a media query, so a stylesheet writes this value in its media queries and a check compares them with the token."
+        },
+        "breakpoint-desktop": {
+            "$type": "dimension",
+            "$value": "1200px",
+            "$description": "From this width up, the desktop layout: the full app rail (icon over name) and three panes side by side."
+        },
+        "rail-width-compact": {
+            "$type": "dimension",
+            "$value": "64px",
+            "$description": "The app rail at tablet width, icons only; the section's name is its accessible name and tooltip."
+        },
+        "tabbar-height": {
+            "$type": "dimension",
+            "$value": "56px",
+            "$description": "The bottom tab bar that replaces the app rail at phone width, as in the native app; the device's safe area is added below it."
+        },
+        "touch-target-min": {
+            "$type": "dimension",
+            "$value": "44px",
+            "$description": "The smallest touch target at tablet and phone widths: a button, a row, a tab, a chip."
         },
         "topbar-height": {
             "$type": "dimension",

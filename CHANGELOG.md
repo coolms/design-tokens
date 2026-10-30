@@ -4,7 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## 0.6.0 (unreleased)
 
-The tokens of the Workspace's look, and Inter. 157 tokens (51 new); two values change, one of them in both schemes.
+The tokens of the Workspace's look, and Inter. 163 tokens (57 new); two values change, one of them in both schemes.
 
 - Changed, for contrast, in both the admin and the Workspace: `text-muted` #69707c to #4b5563 (7.6:1 on white), and
   `danger` #dc2626 to #b91c1c (6.5:1). `danger`'s dark value changes too, #ef4444 to #f87171: 5.7:1 on the dark
@@ -13,6 +13,12 @@ The tokens of the Workspace's look, and Inter. 157 tokens (51 new); two values c
 - Added: `button-chrome-bg`, a navy button or selection on a page's surface (Compose, Call, Sign in, a selected
   filter chip, a sent chat bubble): the chrome's #1a2332 in light, and #2d3f57 in dark, where the chrome's own
   #131c28 sits on the dark surface at 1.09:1.
+- Added: `button-chrome-border`, the 1px edge of a navy button or selection: the fill itself in light, so nothing
+  shows, and #6b7f96 in dark, 3.83:1 against the surface where the fill alone is 1.47:1.
+- Added: the layout's widths, so the kit is responsive by its tokens: `breakpoint-tablet` 600px and
+  `breakpoint-desktop` 1200px (phone below 600px, tablet from 600px, desktop from 1200px), `rail-width-compact`
+  64px (the icons-only rail at tablet width), `tabbar-height` 56px (the phone's bottom tab bar) and
+  `touch-target-min` 44px (the smallest touch target at touch widths).
 - Added: `row-selected` (a selected row in a list; the admin keeps its amber selection), `border-input` #8b929c (a
   field's boundary, 3.1:1 on white), `success-strong` #15803d (green as text, 5.0:1; `success` stays for dots).
 - Added: six avatar pairs, `avatar-1-bg` / `avatar-1-fg` to `avatar-6-*`, a light tint with dark initials (8.1:1 or
