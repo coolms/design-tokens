@@ -157,6 +157,11 @@
     --cms-space-10: 40px;
     --cms-space-12: 48px;
     --cms-rail-width: 80px;
+    --cms-breakpoint-tablet: 600px;
+    --cms-breakpoint-desktop: 1200px;
+    --cms-rail-width-compact: 64px;
+    --cms-tabbar-height: 56px;
+    --cms-touch-target-min: 44px;
     --cms-topbar-height: 64px;
 }
 

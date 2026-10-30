@@ -1115,6 +1115,31 @@
             "$value": "80px",
             "$description": "The Workspace's app rail."
         },
+        "breakpoint-tablet": {
+            "$type": "dimension",
+            "$value": "600px",
+            "$description": "From this width up, the tablet layout: the app rail shows icons only and two panes show side by side. Below it, the phone layout: a bottom tab bar and one pane at a time. A custom property cannot be read in a media query, so a stylesheet writes this value in its media queries and a check compares them with the token."
+        },
+        "breakpoint-desktop": {
+            "$type": "dimension",
+            "$value": "1200px",
+            "$description": "From this width up, the desktop layout: the full app rail (icon over name) and three panes side by side."
+        },
+        "rail-width-compact": {
+            "$type": "dimension",
+            "$value": "64px",
+            "$description": "The app rail at tablet width, icons only; the section's name is its accessible name and tooltip."
+        },
+        "tabbar-height": {
+            "$type": "dimension",
+            "$value": "56px",
+            "$description": "The bottom tab bar that replaces the app rail at phone width, as in the native app; the device's safe area is added below it."
+        },
+        "touch-target-min": {
+            "$type": "dimension",
+            "$value": "44px",
+            "$description": "The smallest touch target at tablet and phone widths: a button, a row, a tab, a chip."
+        },
         "topbar-height": {
             "$type": "dimension",
             "$value": "64px",
