@@ -109,6 +109,16 @@
             },
             "$description": "A navy button or selection on a page's surface -- Compose, Call, Sign in, a selected filter chip, a sent chat bubble. The chrome's navy in light; in dark a lighter navy, since the chrome's dark navy sits on the dark surface at 1.09:1."
         },
+        "button-chrome-border": {
+            "$type": "color",
+            "$value": "#1a2332",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#6b7f96"
+                }
+            },
+            "$description": "The 1px edge of a navy button or selection (button-chrome-bg). In light it is the fill itself, so nothing shows. In dark the navy fill sits on the dark surface at 1.47:1, so the edge is drawn: 3.83:1 against the surface and 4.38:1 against the page (WCAG 1.4.11)."
+        },
         "sidebar-text": {
             "$type": "color",
             "$value": "#c9d3e0",
