@@ -10,8 +10,9 @@ One state component for every kit. 171 tokens (8 new); the components contract g
   of its content. `kind` is loading, empty, error, denied or elevation-required; `title` and `description` are the
   caller's words; an optional `action` (Retry, or the kit's own Elevate, the error banner's flow); `placement` is
   page (centred in the content area), block (centred in its card) or inline (small, beside text). A loading state
-  shows its spinner only after `state-delay`, so a fast read does not flash; every kind is `role="status"` with
-  `aria-live="polite"`. A kit declares the ten states it renders: the five kinds, the three placements,
+  shows nothing, neither spinner nor title, until `state-delay`, then both together, so a fast read does not
+  flash. Every kind is `role="status"` with `aria-live="polite"`, and shows the caller's words as given, adding
+  none of its own beyond its action's label. A kit declares the ten states it renders: the five kinds, the three placements,
   `with-action` and `delayed`.
 - `loading`, `empty-state` and `elevation-required` are superseded by `state`: they stay in the contract until every
   kit implements `state`, then leave it. `error-banner` stays, for a failed read above content that is still shown.

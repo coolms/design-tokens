@@ -165,8 +165,8 @@
         "placement": "page (centred in the content area) | block (centred in its card) | inline (small, beside text)"
       },
       "behaviour": [
-        "loading draws a spinner, never a glyph, only after state-delay (300ms): a read that answers sooner shows nothing, so a fast load does not flash; the title is announced from the start",
-        "role=\"status\" with aria-live=\"polite\" on every kind; error and denied quote the server's words as given",
+        "loading shows nothing at all -- neither spinner nor title -- until state-delay (300ms), then both together, so a read that answers sooner shows nothing; the spinner is drawn, never a glyph. A kit may have its title announced to assistive technology from the start, visually hidden until the delay",
+        "role=\"status\" with aria-live=\"polite\" on every kind. Every kind shows the caller's title and description as given, and adds no words of its own beyond its action's label (for elevation-required: Elevate, and the line saying elevation is not available here)",
         "the spinner is spinner-color on spinner-track, spinner-size-<placement>, one turn per spinner-duration; with prefers-reduced-motion it pulses instead of turning",
         "elevation-required is not offered by a kit whose clients never elevate (notOffered, with the reason)"
       ],
