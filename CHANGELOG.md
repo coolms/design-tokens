@@ -2,6 +2,23 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## Unreleased
+
+One state component for every kit. 171 tokens (8 new); the components contract goes to 0.2.0.
+
+- Added to the contract: `state`, one component for every state a page, a card or a line of text can be in instead
+  of its content. `kind` is loading, empty, error, denied or elevation-required; `title` and `description` are the
+  caller's words; an optional `action` (Retry, or the kit's own Elevate, the error banner's flow); `placement` is
+  page (centred in the content area), block (centred in its card) or inline (small, beside text). A loading state
+  shows its spinner only after `state-delay`, so a fast read does not flash; every kind is `role="status"` with
+  `aria-live="polite"`. A kit declares the ten states it renders: the five kinds, the three placements,
+  `with-action` and `delayed`.
+- `loading`, `empty-state` and `elevation-required` are superseded by `state`: they stay in the contract until every
+  kit implements `state`, then leave it. `error-banner` stays, for a failed read above content that is still shown.
+- Added: the spinner, `spinner-color` (the accent text colour: 7.2:1 on the light surface, 9.6:1 on the dark),
+  `spinner-track` (the border colour), `spinner-size-inline` 16px, `spinner-size-block` 24px, `spinner-size-page`
+  32px, `spinner-stroke` 2px and `spinner-duration` 800ms (one turn); and `state-delay` 300ms.
+
 ## 0.6.0 (2026-10-30)
 
 The tokens of the Workspace's look, and Inter. 163 tokens (57 new); two values change, one of them in both schemes.

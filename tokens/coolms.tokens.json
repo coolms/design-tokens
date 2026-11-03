@@ -1144,6 +1144,46 @@
             "$type": "dimension",
             "$value": "64px",
             "$description": "The Workspace's top bar."
+        },
+        "spinner-color": {
+            "$type": "color",
+            "$value": "{cms.accent-text}",
+            "$description": "The turning arc of the state component's spinner."
+        },
+        "spinner-track": {
+            "$type": "color",
+            "$value": "{cms.border}",
+            "$description": "The spinner's full circle under the arc."
+        },
+        "spinner-size-inline": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$description": "A spinner beside text."
+        },
+        "spinner-size-block": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$description": "A spinner centred in a card."
+        },
+        "spinner-size-page": {
+            "$type": "dimension",
+            "$value": "32px",
+            "$description": "A spinner centred in a page's content area."
+        },
+        "spinner-stroke": {
+            "$type": "dimension",
+            "$value": "2px",
+            "$description": "The width of the arc and the track."
+        },
+        "spinner-duration": {
+            "$type": "duration",
+            "$value": "800ms",
+            "$description": "One turn of the spinner."
+        },
+        "state-delay": {
+            "$type": "duration",
+            "$value": "300ms",
+            "$description": "How long a loading state waits before it shows: a read answered sooner shows nothing."
         }
     }
 }
