@@ -161,7 +161,7 @@
         "kind": "loading | empty | error | denied | elevation-required",
         "title": "string: what the state is, in the caller's words",
         "description": "string, optional: why, or what to do",
-        "action": "optional: a label and a handler -- Retry for an error; for elevation-required the kit's own Elevate, the same flow the error banner offers",
+        "action": "optional: a label and a handler -- Retry for an error, or what an empty state suggests; for elevation-required the kit's own Elevate, the same flow the error banner offers. denied never offers an action: a refusal is the server's last word, and a retry or a request would only be refused again",
         "placement": "page (centred in the content area) | block (centred in its card) | inline (small, beside text)"
       },
       "behaviour": [
