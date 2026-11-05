@@ -179,11 +179,12 @@
         "error",
         "no-preview",
         "editing",
+        "editing-closing",
         "editing-conflict",
         "with-edit",
         "with-siblings",
+        "with-thumbnails",
         "with-attachment-strip",
-        "fullscreen",
         "phone"
       ],
       "api": {
@@ -194,12 +195,13 @@
         "onClose": "handler. The caller decides what closing means for its address"
       },
       "parts": {
-        "overlay": "Covers the page and holds everything below. The page behind cannot be reached or scrolled while it is open",
-        "top bar": "The file's name, truncated with the whole name available, then its actions in this order: Edit (only with canEdit), Print (only for a PDF or a paged document), Download, Open separately, Fullscreen, Close. While editing it shows the save status and Done in place of Edit. An adapter adds none here",
-        "viewer bar": "What this content type needs, from its adapter: page and zoom for a paged file, zoom and fit for a picture. Absent when the adapter needs none. Never holds a file action",
+        "overlay": "Dark, whatever the scheme, covering the page and holding everything below. The page behind cannot be reached or scrolled while it is open",
+        "top bar": "At the left: Close, the file type's badge, the file's name (truncated, with the whole name available), and its position in its set (\"2 of 17\") where it has one. At the right, in this order: Download, Print (where the adapter can print), Open separately, then Edit, the one amber button, only with canEdit. While editing, the save status and Done take the actions' place. An adapter adds nothing here. A kit may add Fullscreen as an extra, as one more icon before Download",
+        "viewer bar": "Along the foot, centred: what this content type needs, from its adapter: previous, page and next, zoom out, zoom in, and Fit width and Fit page. It says \"Preview not available\" under no-preview. It never holds a file action",
         "content": "The adapter, filling what is left. It scrolls inside itself, and the overlay never scrolls as a document",
-        "siblings": "Previous and next at the content's edges, shown only with siblings and each hidden at its end of the list",
-        "attachment strip": "For a set of files, such as a message's attachments: along the foot of the overlay at a wide width, with the current one marked. Not drawn on a phone"
+        "thumbnails": "For a paged file at a wide width: a rail of its pages at the left, numbered, with the current one marked. Not drawn on a phone",
+        "siblings": "Previous and next at the content's edges, for the other files of its set, each hidden at its end of the list",
+        "attachment strip": "For a set of files, such as a message's attachments: along the foot, above the viewer bar, at a wide width, each with its type badge and name, and the current one marked. Not drawn on a phone"
       },
       "adapters": {
         "rule": "Chosen by the server's content type, never by the file's name. A type no adapter claims is no-preview. A kit declares the adapters it has; one it lacks is no-preview there, not an error",
@@ -216,16 +218,16 @@
         "The states are the state component's, in placement page, inside the content: loading while the file is read; error with the caller's words and Retry when the read failed, or no Retry when the server says the file is gone or refused; no-preview, its kind empty, with Download as its action. The top bar stays in all three, so Close and Download are always there",
         "Download offers the server's download address, whatever the adapter. A person without the right to read the file never reaches the viewer: a refusal on opening is the caller's",
         "Edit is drawn only with the server's write permission, and is absent rather than disabled without it",
-        "Editing is a state of the viewer, without leaving the page: the content hosts the existing editor component for the type (document, sheet, image). The top bar shows the save status and Done, and Done returns to viewing. Unsaved changes ask before closing. The address carries the state (/view/<id>?edit), so a reload keeps it",
+        "Editing is a state of the viewer, without leaving the page: the content hosts the existing editor component for the type (document, sheet, image), and the viewer has no editor of its own. The top bar shows the save status and Done, and Done returns to viewing. Unsaved changes ask before closing: the editing-closing state. The address carries the state (/view/<id>?edit), so a reload keeps it",
         "If the file changed elsewhere meanwhile, the viewer warns and offers the newer version; it never overwrites silently, as with drafts. That is the editing-conflict state",
-        "Open separately opens /view/<id> as a page, never the raw file. Print is offered for a PDF and a paged document only",
+        "Open separately opens /view/<id> as a page, never the raw file. Print is offered where the adapter can print: a PDF, a paged document, a sheet",
         "Focus moves into the overlay on opening, onto Close unless the adapter takes it, is held inside while open, and returns to what opened it on closing. role=\"dialog\", aria-modal=\"true\", labelled by the file's name",
-        "Keys: Escape leaves fullscreen first, then closes. Left and Right are previous and next, only when focus is not in something that uses them, such as a text field or an adapter's own scroll. Plus, minus and 0 are zoom in, out and reset where the adapter has zoom. Every action can be reached by Tab, and has a visible focus and an accessible name, icon or not",
+        "Keys: Escape closes, first asking when there are unsaved changes. Left and Right are previous and next, only when focus is not in something that uses them, such as a text field or an adapter's own scroll. Plus, minus and 0 are zoom in, out and reset where the adapter has zoom. Every action can be reached by Tab, and has a visible focus and an accessible name, icon or not",
         "A change to the next file moves the address where the caller keeps one, and announces the new name politely",
-        "Phone, below breakpoint-md: the overlay takes the whole screen with no margin and the top bar stays on one line, the name giving way first; Fullscreen is not offered, since it already is; Download and the other actions go behind the overflow menu, while Edit and Close stay out of it; each target is at least touch-target-min; a swipe is previous and next only where the adapter has not taken the gesture, and pinch is the adapter's; no attachment strip",
+        "Phone, below breakpoint-md: the overlay takes the whole screen. The top bar stays on one line: Close, the badge, the name giving way first, then Edit as an amber icon where it is offered, and a menu behind ... holding every other action. Position dots above the viewer bar show the place in a set. No thumbnails and no attachment strip. The viewer bar stays, condensed to icons. Each target is at least touch-target-min; a swipe is previous and next only where the adapter has not taken the gesture, and pinch is the adapter's",
         "prefers-reduced-motion: no animation between files"
       ],
-      "notes": "Replaces the admin's separate viewers once ui-angular implements it. No release of this contract until ui-react and ui-angular both implement it, as with state."
+      "notes": "Follows the approved mockups. Replaces the admin's separate viewers once ui-angular implements it, one viewer per step: document-viewer-angular as the adapter host, Word first; pdf-angular as the PDF adapter, keeping the sandboxed frame's guarantees; image preview in the file manager and media library; the sheet read-only view. No release of this contract until ui-react and ui-angular both implement it, as with state."
     }
   }
 }
