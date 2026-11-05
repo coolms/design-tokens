@@ -6,7 +6,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 The file viewer in the contract; no token changes. The components contract goes to 0.3.0.
 
-- Added to the contract: `file-viewer`, one way to look at a file in every kit: its parts (overlay, top bar actions, viewer bar, content, previous and next, and a strip for a set of attachments), its states (loading, error and no-preview through `state`, and editing), adapters chosen by the server's content type, Edit drawn only with the server's write permission and opening its editor in the overlay, keyboard and focus rules, and its behaviour on a phone. Not released until ui-react and ui-angular both implement it.
+- Added to the contract: `file-viewer`, one way to look at a file in every kit: its parts (overlay, top bar actions, viewer bar, content, previous and next, and a strip for a set of attachments), its states (loading, error and no-preview through `state`, and editing), adapters chosen by the server's content type, Edit drawn only with the server's write permission and hosting the existing editor in the overlay, with its save status, Done, a warning when the file changed elsewhere, and the state in the address; Print and Open separately in the top bar, keyboard and focus rules, and its behaviour on a phone. Not released until ui-react and ui-angular both implement it.
 
 ## 0.7.0 (2026-11-05)
 
