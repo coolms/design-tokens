@@ -206,10 +206,11 @@
       "adapters": {
         "rule": "Chosen by the server's content type, never by the file's name. A type no adapter claims is no-preview. A kit declares the adapters it has; one it lacks is no-preview there, not an error",
         "application/pdf": "paged: drawn in a sandboxed frame that holds no credential and can reach nothing",
-        "image/* (raster: png, jpeg, gif, webp, avif)": "picture: zoom and fit",
+        "image/* (raster: png, jpeg, gif, webp, avif)": "picture: zoom, pan and fit",
         "image/svg+xml": "picture, only as an image element or rasterised, never inlined, since an SVG can hold a script",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document and the platform's .ddoc": "document: paged where the format has pages",
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "sheet: read-only here; Edit goes to the editor",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation": "presentation: paged, one slide to a page, read-only here",
         "text/* except text/html, and JSON": "text: escaped, in a monospaced block, with a size limit past which it is no-preview",
         "audio/*, video/*": "media: the platform's player, with no autoplay",
         "text/html and anything else": "no-preview. A page is never rendered as a page here"
