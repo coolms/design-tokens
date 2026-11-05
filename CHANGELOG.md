@@ -2,7 +2,7 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
-## Unreleased
+## 0.7.0 (2026-11-05)
 
 One state component for every kit. 171 tokens (8 new); the components contract goes to 0.2.0.
 
