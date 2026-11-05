@@ -2,6 +2,12 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## Unreleased
+
+The file viewer in the contract; no token changes. The components contract goes to 0.3.0.
+
+- Added to the contract: `file-viewer`, one way to look at a file in every kit: its parts (overlay, top bar actions, viewer bar, content, previous, next and thumbnails), its states through `state` (loading, error, no-preview), adapters chosen by the server's content type, Edit drawn only with the server's write permission, keyboard and focus rules, and its behaviour on a phone. Not released until ui-react and ui-angular both implement it.
+
 ## 0.7.0 (2026-11-05)
 
 One state component for every kit. 171 tokens (8 new); the components contract goes to 0.2.0.
