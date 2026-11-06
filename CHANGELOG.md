@@ -2,6 +2,10 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## 0.7.1 (unreleased)
+
+- `tools/check-kit.mjs`: a component a kit declares `notOffered` is no longer owed as a state of another component. The contract says a kit whose clients never elevate does not offer `elevation-required`, and the checker still asked for that kind on `state`.
+
 ## 0.7.0 (2026-11-05)
 
 One state component for every kit. 171 tokens (8 new); the components contract goes to 0.2.0.
