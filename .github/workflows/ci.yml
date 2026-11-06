@@ -94,6 +94,8 @@ jobs:
           node tools/check-kit.mjs; rc=$?
           [ "$rc" = 2 ] || { echo "FOUND -- expected exit 2 with no kit, got $rc"; exit 1; }
           echo "CLEAR -- control kit FOUND (1), no kit UNEVALUABLE (2)"
+      - name: A component not offered is not owed as another component's state
+        run: node tests/check-kit-not-offered.mjs
       - name: The checker imports Node built-ins only
         run: |
           node -e '
