@@ -229,6 +229,50 @@
         "prefers-reduced-motion: no animation between files"
       ],
       "notes": "Follows the approved mockups. Replaces the admin's separate viewers once ui-angular implements it, one viewer per step: document-viewer-angular as the adapter host, Word first; pdf-angular as the PDF adapter, keeping the sandboxed frame's guarantees; image preview in the file manager and media library; the sheet read-only view. No release of this contract until ui-react and ui-angular both implement it, as with state."
+    },
+    "file-picker": {
+      "purpose": "One way to choose files that already exist in the person's spaces, such as Drive, to attach or use elsewhere without downloading them and uploading them again. The kit knows no API: the host gives the spaces, lists folders, and receives the chosen entries.",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "with-selection",
+        "with-budget",
+        "over-budget",
+        "disabled-entry",
+        "paging",
+        "phone"
+      ],
+      "api": {
+        "spaces": "the spaces the person may read, each with an id and a name to show, in the host's order. With one, no space switch is drawn",
+        "list": "list(space, path, cursor?) returns { entries, next? }: one page of a folder, in the host's order (folders first is the stated default), and next when more follow. Each entry has id, name, kind (folder or file), size and mimeType for a file. A refusal the host reports as denied, a failure as error",
+        "disabledReason": "optional: disabledReason(entry) returns the host's own reason a file cannot be chosen (not readable, a type it will not send), or nothing. The kit shows the reason and never ticks such a file",
+        "budget": "optional: { usedBytes, limitBytes, cost? }, what the host has spent of a limit before this choice, such as a message's size against its mailbox's limit. cost(entry) is what a file adds against that limit, the file's size when not given; a host whose limit counts something else, such as an encoded message, says so through cost. The kit computes what is left after the selection, and the files that would go over it",
+        "confirmLabel": "the confirm action's words for a count, by key, such as \"Attach {count} files\"",
+        "onConfirm": "handler, given the chosen entries: id, name, size, mimeType, and the space and path each was chosen in, so the host needs no second lookup",
+        "onCancel": "handler"
+      },
+      "parts": {
+        "dialog": "Over the page, labelled by its title. Desktop: a dialog of fixed height whose list scrolls inside it. Phone: the whole screen",
+        "space switch": "At the top, when there is more than one space: the space shown, and the others to switch to. Switching keeps the selection",
+        "breadcrumb": "A navigation landmark: the space, then each folder down to the one shown, each a way back to it, and Up",
+        "list": "The folder's entries: a folder opens, a file ticks. Each row shows its kind's icon, name, and a file's size. A disabled file shows its reason and cannot be ticked",
+        "selection chip": "\"{count} selected\", when anything is: it opens the list of everything chosen, across folders, each with a way to remove it, and Clear",
+        "footer": "The whole selection's count and total size; with a budget, \"{left} of {limit} left after these\"; Cancel, and the confirm action, whose label carries the count. On a phone the footer stays at the foot while the list scrolls"
+      },
+      "behaviour": [
+        "The selection is the person's across folders and spaces: what is ticked in one folder stays ticked after going elsewhere and coming back, and the footer and chip count all of it, not this folder's alone",
+        "With a budget, a file that would take the selection over what is left is disabled with that reason, and over-budget is the state when the selection already does. This is computed in the kit from the budget and the selection, so every host behaves alike. The host's own disabledReason is shown first where both apply",
+        "The confirm action is disabled with nothing chosen, and while over the budget",
+        "Paging: when list gives next, the kit asks for the following page as the list nears its end, keeping what is shown; paging is the state while it does",
+        "States are the state component's, in placement block, inside the list: loading while a folder is read; empty for a folder with nothing in it; error with the host's words and Retry; denied for a folder the person may not open, shown in place, with no action, and the dialog stays open so another folder can be chosen",
+        "Keys: the list is a listbox with aria-multiselectable. Up and Down move, Enter opens a folder, Space ticks a file, Backspace goes Up a folder, and Escape cancels. The breadcrumb is a nav. Every action can be reached by Tab, and has a visible focus and an accessible name",
+        "Focus moves into the dialog on opening, onto the list, is held inside while open, and returns to what opened it on closing. role=\"dialog\", aria-modal=\"true\"",
+        "Strings are the host's catalogue's, by key, with the counts and sizes formatted for the person's language",
+        "Phone, below breakpoint-md: the whole screen, the footer sticky at the foot, each target at least touch-target-min"
+      ],
+      "notes": "First used by compose's From Drive; the admin implements the same entry in Angular, on its tree picker where it fits. No release of this contract until ui-react and ui-angular both implement it, as with file-viewer."
     }
   }
 }

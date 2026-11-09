@@ -4,9 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-The file viewer in the contract; no token changes. The components contract goes to 0.3.0.
+The file viewer and the file picker in the contract; no token changes. The components contract goes to 0.3.0.
 
 - Added to the contract: `file-viewer`, one way to look at a file in every kit: its parts (overlay, top bar, viewer bar, content, thumbnails, previous and next, and a strip for a set of attachments), its states (loading, error and no-preview through `state`, and editing), adapters chosen by the server's content type, Edit drawn only with the server's write permission and hosting the existing editor in the overlay, with its save status, Done, a warning when the file changed elsewhere, and the state in the address; Print and Open separately in the top bar, keyboard and focus rules, and its behaviour on a phone. Not released until ui-react and ui-angular both implement it.
+- Added to the contract: `file-picker`, one way to choose files that already exist in the person's spaces, such as Drive, without downloading and uploading them again. The kit knows no API: the host gives the spaces and lists folders page by page. The selection is kept across folders, with a chip that lists and clears it. An optional budget against a limit, such as a mailbox's message size, is computed in the kit, so every host disables the same files. The host adds its own reasons a file cannot be chosen. Keyboard rules for a multi-select list; the states through `state`, a folder the person may not open shown as denied in place; full screen on a phone. Not released until ui-react and ui-angular both implement it.
 
 ## 0.7.1 (unreleased)
 
