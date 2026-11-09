@@ -317,18 +317,19 @@
       ],
       "mail": {
         "list pane": "Refresh, its icon and label, at the start, pinned: at its narrowest its label hides. The status slot at the end: \"Synced at {time}\". Refresh is busy while the list is read again; the status keeps its last time until that read ends",
-        "message pane": "Above the subject, three groups: Reply, Forward | Delete | Mark unread, Star, Move. The subject, then From, To and Date, follow below the row as the message's content, never in it",
-        "pinned": "Reply, Forward and Delete: they never go behind ...",
+        "message pane": "Above the subject, three groups: Reply, Forward | Archive, Delete | Mark unread, Star, Move. The subject, then From, To and Date, follow below the row as the message's content, never in it",
+        "pinned": "Reply, Forward, Archive and Delete: they never go behind ...",
         "overflow": "Star first, then Move, then Mark unread",
         "toggles": "Mark unread holds the read state's place: Mark read or Mark unread, whichever the target can take; a target that mixes read and unread messages may show both, side by side in that place. Star holds the star's place the same way, as Star or Unstar. A pair goes behind ... together",
-        "Reply": "opens a reply form, or focuses an inline reply box where the host has one",
-        "several messages": "Reply and Forward act on one message, so with several messages as the target they are absent and Delete leads, the groups after it unchanged. Where a host shows the actions for checked messages is the host's; wherever it does, they are this row, in this order",
-        "Archive": "a host's extra action: its place in the order awaits a decision, and this entry does not place it",
+        "Reply": "the contract fixes the button, not the editor: a host opens an inline reply, focusing it and scrolling it into view while keeping a way to the full compose form, or opens the compose form",
+        "Forward": "stays in the order; a host that does not have it yet leaves it out, as any missing action",
+        "several messages": "Reply and Forward act on one message, so with several messages as the target they are absent and Archive leads, the groups after it unchanged. Where a host shows the actions for checked messages is the host's; wherever it does, they are this row, in this order",
+        "Archive": "moves the message to the mailbox's archive folder. Shown only where the mailbox has one and the message is not already in it: a mailbox with no archive target shows no Archive, and a host never creates a folder for it. Pinned, and not destructive: never drawn as danger",
         "side column": "Its first element (a mailbox card, or Compose) aligns its top with the rows; Compose, one control, takes pane-toolbar-height"
       },
       "host": {
-        "supplies": "the actions it has, with their icons, labels and handlers in its own words and catalogue; which of them apply to the target; the reasons for a disabled one; which are busy; the status text, formatted; the toolbar's label and moreLabel; the choices an action opens, such as Move's folders; what Reply opens; the question before an action that cannot be undone, through confirm-dialog",
-        "left to it": "the row's inline padding, its background and the edge below it; the icon set; where the actions for checked rows appear; navigation that is not an action on the pane's object, such as Back where one pane shows at a time, which leads the row when it shares it, before the first group, and never goes behind ...; the side column's first element itself; and any extra action, such as Archive, until its place is decided"
+        "supplies": "the actions it has, with their icons, labels and handlers in its own words and catalogue; which of them apply to the target; the reasons for a disabled one; which are busy; the status text, formatted; the toolbar's label and moreLabel; the choices an action opens, such as Move's folders; what Reply opens; the mailbox's archive folder, where it has one; the question before an action that cannot be undone, through confirm-dialog",
+        "left to it": "the row's inline padding, its background and the edge below it; the icon set; where the actions for checked rows appear; navigation that is not an action on the pane's object, such as Back where one pane shows at a time, which leads the row when it shares it, before the first group, and never goes behind ...; the side column's first element itself; and whether Reply opens an inline reply or the compose form"
       },
       "notes": "pane-toolbar-height is the row's height and the side column's first element's: a control (row-height) with space-2 above and below it. First built by the mail screens of the admin and the Workspace; a kit declares this entry once it provides the row. No release of this contract until ui-react and ui-angular both implement it, as with file-picker."
     }
