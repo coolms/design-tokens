@@ -28,6 +28,8 @@ jobs:
         run: node tools/engines-check.mjs
       - name: The dist files are what the source generates
         run: node tools/design-tokens.mjs --check
+      - name: A token made of others writes their custom properties, and names none the file lacks
+        run: node tests/token-expression.mjs
       - name: The stylesheet is CSS a browser keeps whole
         run: node tools/check-css.mjs dist/coolms-tokens.css
       # The check has teeth: a `//` header, as SCSS writes it, must fail it.

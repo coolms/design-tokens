@@ -1145,6 +1145,11 @@
             "$value": "64px",
             "$description": "The Workspace's top bar."
         },
+        "pane-toolbar-height": {
+            "$type": "dimension",
+            "$value": "calc({cms.row-height} + 2 * {cms.space-2})",
+            "$description": "The action row at the top of every pane (the pane-toolbar contract entry), and the side column's first element beside it: a control's height (row-height) with space-2 above and below it, 52px. At tablet and phone widths a touch-target-min control fits it with space-1 above and below."
+        },
         "spinner-color": {
             "$type": "color",
             "$value": "{cms.accent-text}",
