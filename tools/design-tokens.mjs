@@ -11,7 +11,8 @@
 //
 // Refuses -- writes nothing -- a colour token with neither a dark value nor a stated reason it
 // does not flip ("invariant"): a colour that forgot its dark value was invisible until a dark
-// panel showed it. The app's module carries what the app can paint (the app's three
+// panel showed it. Refuses too a token naming one the file does not define, whole (`{cms.border}`) or inside an
+// expression (`calc({cms.row-height} + 2 * {cms.space-2})`, written with each name as its custom property). The app's module carries what the app can paint (the app's three
 // conditions): colours as literal values React Native parses, aliases left out, `dark` complete --
 // every key of `light`, an invariant carrying its one value -- and radii as numbers. The brand
 // accent is apart from `light` and `dark`: `accent` holds its five tokens per scheme, the app's
@@ -54,6 +55,11 @@ function referenceOf(value) {
     return m ? m[1] : null;
 }
 
+/** Every token a value names, whole or inside an expression: `calc({cms.row-height} + 2 * {cms.space-2})` -> both. */
+function referencesIn(value) {
+    return typeof value === 'string' ? [...value.matchAll(/\{cms\.([a-z0-9-]+)\}/g)].map((m) => m[1]) : [];
+}
+
 /** surface-muted -> surfaceMuted */
 function camel(key) {
     return key.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
@@ -68,8 +74,10 @@ export function generate(file) {
     for (const [key, token] of Object.entries(tokens)) {
         const ext = token.$extensions?.['org.coolms'] ?? {};
         const reference = referenceOf(token.$value);
-        if (reference !== null && !(reference in tokens)) {
-            refused.push(`cms.${key} refers to cms.${reference}, which the file does not define`);
+        for (const named of referencesIn(token.$value)) {
+            if (!(named in tokens)) {
+                refused.push(`cms.${key} refers to cms.${named}, which the file does not define`);
+            }
         }
         if (token.$type === 'color' && reference === null && !('dark' in ext) && !ext.invariant) {
             refused.push(`cms.${key} is a colour with neither a dark value nor a stated reason it does not flip`);
@@ -80,8 +88,10 @@ export function generate(file) {
     }
 
     const css = (key, value) => {
-        const reference = referenceOf(value);
-        return `    --cms-${key}: ${reference === null ? value : `var(--cms-${reference})`};`;
+        const written = typeof value === 'string'
+            ? value.replace(/\{cms\.([a-z0-9-]+)\}/g, (_, named) => `var(--cms-${named})`)
+            : value;
+        return `    --cms-${key}: ${written};`;
     };
     const lightLines = [];
     const darkLines = [];
@@ -100,7 +110,7 @@ export function generate(file) {
     const dark = {};
     const radius = {};
     for (const [key, token] of Object.entries(tokens)) {
-        if (referenceOf(token.$value) !== null) {
+        if (referencesIn(token.$value).length > 0) {
             continue;
         }
         if (token.$type === 'color' && !ADMIN_BRAND.test(key)) {

@@ -26,7 +26,8 @@ node tools/design-tokens.mjs --check  # writes nothing; checks both dist files a
 ```
 
 The generator refuses, and writes nothing, when a colour has neither a dark value nor a reason it doesn't change,
-or when a token names one that doesn't exist.
+or when a token names one that doesn't exist, whole or inside an expression such as
+`calc({cms.row-height} + 2 * {cms.space-2})`, which the stylesheet writes with each name as its custom property.
 
 | Exit code | Meaning |
 |---|---|

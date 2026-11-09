@@ -273,6 +273,64 @@
         "Phone, below breakpoint-md: the whole screen, the footer sticky at the foot, each target at least touch-target-min"
       ],
       "notes": "First used by compose's From Drive; the admin implements the same entry in Angular, on its tree picker where it fits. No release of this contract until ui-react and ui-angular both implement it, as with file-viewer."
+    },
+    "pane-toolbar": {
+      "purpose": "The one row of actions at the top of a pane: the same height in every pane of a screen, so the rows line up across it, with one order of actions and one way of giving way when the pane narrows, in every kit and every host. Mail is its reference instance.",
+      "states": [
+        "default",
+        "labels-hidden",
+        "overflowing",
+        "menu-open",
+        "with-status",
+        "action-disabled",
+        "action-busy",
+        "phone"
+      ],
+      "api": {
+        "label": "string: the toolbar's accessible name, in the host's words, such as \"Message actions\"",
+        "groups": "the actions in their order, as groups: each group an ordered list of actions, with a separator drawn between two groups. Each action has id, icon, label (its accessible name always, and its tooltip once labels hide) and a handler, and optionally: kind danger (the delete-kind action, and no other), pinned (never goes behind ...), disabled with the host's reason, busy, and pressed for a toggle that keeps its label",
+        "overflow": "the ids that may go behind ..., in the order they go, the first to go first. An action neither pinned nor named here stays in the row",
+        "status": "optional: the trailing status slot's text, such as \"Synced at 14:32\", formatted by the host for the person's language",
+        "moreLabel": "the ... button's accessible name and tooltip, from the host's catalogue: \"More actions\" in English"
+      },
+      "parts": {
+        "row": "Exactly pane-toolbar-height tall at the very top of its pane, on one line that never wraps and never scrolls: the actions at the start, the status slot at the end, everything centred vertically in it",
+        "action": "A button with its icon, then its label. In a group, actions sit space-1 apart",
+        "separator": "Between two groups: a vertical line in border, role=\"separator\" with aria-orientation=\"vertical\", never focused. Drawn only between two groups that both still show something in the row",
+        "more": "The ... button, after the last action shown, drawn only while at least one action is behind it: a menu button that opens the kit's context-menu, listing those actions",
+        "status slot": "At the end of the row: text, not an action, in text-muted at font-size-meta. It takes the width the actions leave and truncates with an ellipsis, its whole text kept as its title"
+      },
+      "behaviour": [
+        "Alignment: every pane of a screen starts at the same top and draws its row there, at pane-toolbar-height, so the rows line up across the screen. A pane with nothing to act on keeps its row, empty, at that height. The side column beside the panes starts at that top too: its first element aligns its top edge with the rows, and an element that is one control takes pane-toolbar-height exactly, the control centred in it",
+        "The row is measured on its own width as its pane resizes, never on the window's: panes split and resize independently, and a breakpoint of the window would fight them. In a web kit, a ResizeObserver on the row",
+        "Giving way, in this order as the row narrows: (1) every action shows its icon and its label; (2) when they no longer fit, every label hides at once, never one by one; (3) when the icons no longer fit, actions go behind ... in the overflow order, the fewest that let the rest and ... fit. The ... button takes an icon's width itself, so one action alone never goes behind it: a menu of one saves no room. Pinned actions never go behind it. As the row widens, actions come back in the reverse order, and the labels come back once every action is back and all of them fit",
+        "The host keeps a pane at least as wide as its pinned actions and ..., labels hidden; below that the contract promises nothing",
+        "Order: the row shows the host's groups in the host's order, and giving way never reorders them: the actions still shown keep their places. The ... menu lists the actions behind it in the overflow order, each with its icon and its label, as in the row",
+        "A host that lacks an action leaves it out: the rest keep their order and their groups, and a group left empty is not drawn, nor is its separator. An action that does not apply to the target (Reply for several messages) is absent, not disabled; one that applies but cannot run now is disabled",
+        "Labels hidden: each action shows its label as a tooltip on hover and on keyboard focus, kept while the pointer is over it and dismissed with Escape, and its accessible name stays the label: a tooltip is never the only name. A toggle either changes its label with its state (Star, Unstar) or keeps it and carries aria-pressed, never both",
+        "Danger: only the delete-kind action is drawn as danger, the button's danger state, its icon and label in danger. Behind ... it would be the context-menu's item-danger; Delete is pinned in every instance, so it never goes there. No other action is drawn as danger, whatever it does",
+        "Disabled: aria-disabled=\"true\", kept in the row's focus order so it can be found and its tooltip read, with the host's reason as its tooltip where the host gives one. Choosing it does nothing",
+        "Busy: an action whose work is under way shows a spinner in its icon's place, spinner-size-inline, after state-delay, so a quick one shows nothing; it is aria-busy=\"true\", keeps its label and name, and a second press does not run it again",
+        "Keys: role=\"toolbar\" with the host's label, and one Tab stop: Tab enters on the action focused last, the first at the start; Left and Right move between the actions shown and ..., without wrapping; Home and End go to the first and the last. Disabled actions are reached; separators and the status slot are not",
+        "The ... button: aria-haspopup=\"menu\" and aria-expanded, named by moreLabel. Enter, Space or Down opens the menu on its first item, Up on its last; Up and Down move in it; Escape closes it and returns focus to ...; Tab closes it. An action whose button opens a choice in the row (Move's folders) opens the same choice from its item",
+        "At tablet and phone widths, below breakpoint-desktop, each action is at least touch-target-min square, and the row stays pane-toolbar-height with space-1 above and below it. Below breakpoint-tablet one pane shows at a time; the rules are the same, measured on the row"
+      ],
+      "mail": {
+        "list pane": "Refresh, its icon and label, at the start, pinned: at its narrowest its label hides. The status slot at the end: \"Synced at {time}\". Refresh is busy while the list is read again; the status keeps its last time until that read ends",
+        "message pane": "Above the subject, three groups: Reply, Forward | Delete | Mark unread, Star, Move. The subject, then From, To and Date, follow below the row as the message's content, never in it",
+        "pinned": "Reply, Forward and Delete: they never go behind ...",
+        "overflow": "Star first, then Move, then Mark unread",
+        "toggles": "Mark unread holds the read state's place: Mark read or Mark unread, whichever the target can take; a target that mixes read and unread messages may show both, side by side in that place. Star holds the star's place the same way, as Star or Unstar. A pair goes behind ... together",
+        "Reply": "opens a reply form, or focuses an inline reply box where the host has one",
+        "several messages": "Reply and Forward act on one message, so with several messages as the target they are absent and Delete leads, the groups after it unchanged. Where a host shows the actions for checked messages is the host's; wherever it does, they are this row, in this order",
+        "Archive": "a host's extra action: its place in the order awaits a decision, and this entry does not place it",
+        "side column": "Its first element (a mailbox card, or Compose) aligns its top with the rows; Compose, one control, takes pane-toolbar-height"
+      },
+      "host": {
+        "supplies": "the actions it has, with their icons, labels and handlers in its own words and catalogue; which of them apply to the target; the reasons for a disabled one; which are busy; the status text, formatted; the toolbar's label and moreLabel; the choices an action opens, such as Move's folders; what Reply opens; the question before an action that cannot be undone, through confirm-dialog",
+        "left to it": "the row's inline padding, its background and the edge below it; the icon set; where the actions for checked rows appear; navigation that is not an action on the pane's object, such as Back where one pane shows at a time, which leads the row when it shares it, before the first group, and never goes behind ...; the side column's first element itself; and any extra action, such as Archive, until its place is decided"
+      },
+      "notes": "pane-toolbar-height is the row's height and the side column's first element's: a control (row-height) with space-2 above and below it. First built by the mail screens of the admin and the Workspace; a kit declares this entry once it provides the row. No release of this contract until ui-react and ui-angular both implement it, as with file-picker."
     }
   }
 }
