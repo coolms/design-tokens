@@ -296,7 +296,7 @@
       },
       "parts": {
         "row": "Exactly pane-toolbar-height tall at the very top of its pane, on one line that never wraps and never scrolls: the actions at the start, the status slot at the end, everything centred vertically in it",
-        "action": "A button with its icon, then its label. Actions sit space-1 apart",
+        "action": "A button with its icon, then its label. Actions sit space-1 apart. In a web kit, an action whose label is hidden carries cms-pane-toolbar__action--bare, and an action drawn without an icon (a name the table lacks) carries cms-pane-toolbar__action--text; the row carries cms-pane-toolbar--labels-partly-hidden or cms-pane-toolbar--labels-hidden as its state",
         "separator": "Between two groups: a vertical line in border, role=\"separator\" with aria-orientation=\"vertical\", never focused. Drawn only between two groups that both still show something in the row",
         "more": "The More actions button (...), after the last action shown, drawn only while at least one action is behind it: a menu button that opens the kit's context-menu, listing those actions",
         "status slot": "At the end of the row: text, not an action, in text-muted at font-size-meta. It takes the width the actions leave and truncates with an ellipsis, its whole text kept as its title"
