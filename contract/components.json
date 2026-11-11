@@ -355,7 +355,7 @@
       ],
       "parts": {
         "body": "The body is plain text, always: never markup, and never a link. The chevron only expands and collapses the body; it never navigates.",
-        "action": "A notification may carry an action { label, destination }. The destination is a name, never a URL; each host maps the names it knows to its own routes. A host shows a known action as an explicit button under the text, labelled with the translated label, and pressing it goes to the host's route for that destination. A destination the host does not know shows no button, and nothing else about the notification changes. A notification without an action shows no button."
+        "action": "A notification may carry an action { label, destination, params }. The destination is a name, never a URL, and params holds the values its route needs (such as { mailboxId }); each host maps the names it knows, with their params, to its own routes. A host shows a known action as an explicit button under the text, labelled with the translated label, and pressing it goes to the host's route for that destination. A destination the host does not know, or one missing a param its route needs, shows no button, and nothing else about the notification changes. A notification without an action shows no button."
       },
       "behaviour": "The same in both hosts. Opening the action marks the notification read, as opening it does. The button is a real button, in the notification's tab order after its text, named by its label."
     }
