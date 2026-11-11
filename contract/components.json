@@ -343,6 +343,21 @@
         "left to it": "what each action does; how it maps the server's nodes to actions, carrying only what a node gives (a node with no group is in the one group, in the tree's order; with no overflow number it never goes behind More actions); the row's inline padding, its background and the edge below it; navigation that is not an action on the pane's object, such as Back where one pane shows at a time, which leads the row when it shares it, before the first group, and never goes behind More actions; and the side column's first element itself"
       },
       "notes": "pane-toolbar-height is the row's height and the side column's first element's: a control (row-height) with space-2 above and below it. The actions are the server's NaviGraph nodes, not this entry's. First built by the mail screens of the admin and the Workspace; a kit declares this entry once it provides the row. No release of this contract until ui-react and ui-angular both implement it, as with file-picker."
+    },
+    "notification": {
+      "purpose": "One notification in the person's notification list (the bell): its title, its plain-text body, and an optional action that takes the person where the notification is about.",
+      "states": [
+        "unread",
+        "read",
+        "collapsed",
+        "expanded",
+        "with-action"
+      ],
+      "parts": {
+        "body": "The body is plain text, always: never markup, and never a link. The chevron only expands and collapses the body; it never navigates.",
+        "action": "A notification may carry an action { label, destination }. The destination is a name, never a URL; each host maps the names it knows to its own routes. A host shows a known action as an explicit button under the text, labelled with the translated label, and pressing it goes to the host's route for that destination. A destination the host does not know shows no button, and nothing else about the notification changes. A notification without an action shows no button."
+      },
+      "behaviour": "The same in both hosts. Opening the action marks the notification read, as opening it does. The button is a real button, in the notification's tab order after its text, named by its label."
     }
   }
 }
