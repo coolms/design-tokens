@@ -6,6 +6,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 The file viewer, the file picker, the pane toolbar and the notification in the contract. 172 tokens (1 new). The components contract goes to 0.3.0.
 
+- `notification`: pressing a row marks it read, whatever it carries, and expanding it does too; only a row action with a known destination navigates, and a button action only from its button. A row with no destination navigates nowhere but can still be read.
 - `notification`: a notification may be updated in place (same id, new title, body, extras and createdAt, as grouped missed calls): the host replaces the row, places it again by createdAt, counts it once among the unread, and keys one shown outside the app by its id so it is replaced, never repeated.
 - `notification`: an action's presentation is the server's, button (the default) or row. With row, no button is shown and the whole row is a real interactive element, named by the label and opened by a click, a tap or Enter, as for missed calls and mentions (chat.conversation). At most one row action per notification. A host never navigates by notification type: no destination, or an unknown one, leaves the row inert.
 - `pane-toolbar`, mail: every folder row carries an icon by the folder's role, the same table in both hosts (inbox, send, file-earmark-text, archive, trash, star, bookmark, exclamation-octagon, and folder for any other), decorative, the row's name its label.
