@@ -140,7 +140,11 @@
         "open",
         "item-danger",
         "item-locked",
-        "item-refused"
+        "item-refused",
+        "item-disabled"
+      ],
+      "behaviour": [
+        "Disabled item: an action the server says cannot run now, for a reason it names, stays in the menu as a menuitem with aria-disabled=\"true\", reached by the arrow keys, its reason shown beside or under its label and named by aria-describedby; choosing it shows the reason and does nothing else, and the menu stays open. The rule is the pane toolbar's Disabled rule."
       ]
     },
     "state": {
@@ -289,7 +293,7 @@
       ],
       "api": {
         "label": "string: the toolbar's accessible name, in the host's words, such as \"Message actions\"",
-        "actions": "{ id, label, icon, group, overflow?, danger?, disabled?, reason?, busy? }[]: the server's action nodes for which the host has a handler, in the tree's order. label is the accessible name always, and the tooltip once labels hide. group: groups follow the order of their first action, and a separator is drawn between two. overflow: a number; the lowest hides its label first and, once every label is hidden, goes behind More actions first, and actions sharing a number go together, such as a toggle's two states; an action with no number keeps its label longest and never goes behind More actions. overflow 0 means menu only: the action is never drawn in the row, only behind More actions, at any width, and its label is not part of the row's giving way. reason: why a disabled action is disabled, its tooltip",
+        "actions": "{ id, label, icon, group, overflow?, danger?, disabled?, reason?, busy? }[]: the server's action nodes for which the host has a handler, in the tree's order. label is the accessible name always, and the tooltip once labels hide. group: groups follow the order of their first action, and a separator is drawn between two. overflow: a number; the lowest hides its label first and, once every label is hidden, goes behind More actions first, and actions sharing a number go together, such as a toggle's two states; an action with no number keeps its label longest and never goes behind More actions. overflow 0 means menu only: the action is never drawn in the row, only behind More actions, at any width, and its label is not part of the row's giving way. reason: why a disabled action is disabled, a code the host words by key; shown on hover, focus and a press and named by aria-describedby",
         "status": "optional: the trailing status slot's text, such as \"Synced at 14:32\", formatted by the host for the person's language",
         "moreLabel": "More actions' accessible name and tooltip, from the host's catalogue: \"More actions\" in English",
         "action": "emitted with the chosen action's id. The row knows nothing of what an action does"
@@ -310,7 +314,7 @@
         "Icons: a node's icon is a Bootstrap Icons name. Each kit holds one table from those names to its own icons. A name the table lacks shows the action's label alone, with no empty icon box and no stand-in glyph, also while the other actions hide their labels, and the row measures it that way: its label is its width with labels hidden too. Behind More actions it is listed without an icon",
         "A hidden label: an action whose label is hidden shows it as a tooltip on hover and on keyboard focus, kept while the pointer is over it and dismissed with Escape, and its accessible name stays the label: a tooltip is never the only name. A toggle names its next state by its label (two nodes sharing an overflow number), so its name always says what choosing it does",
         "Danger: an action whose node says danger is drawn as the button's danger state, its icon and label in danger, and as the context-menu's item-danger when it is behind More actions. No other action is drawn as danger",
-        "Disabled: aria-disabled=\"true\", kept in the row's focus order so it can be found and its tooltip read, with its reason as its tooltip where one is given. Choosing it does nothing",
+        "Disabled: an action the server says cannot run now, for a reason it names, is drawn disabled, never left out: aria-disabled=\"true\" (never the disabled attribute), kept in the row's focus order and in More actions when it has overflowed, with its reason. The reason is a code the host turns into its own words by key, never English from the server. It shows on hover, on focus and on a press, as text the action names with aria-describedby (not only a title), so it is reached and announced without a pointer. A press, Enter or Space shows the reason and does nothing else: no request, no notice, no change. An action absent from the tree, or one whose condition hides it, stays absent; only one that says why it cannot run is drawn disabled. The same holds in every place an action is offered: the row's context menu and the checked-rows bar",
         "Busy: an action whose work is under way shows a spinner in its icon's place, spinner-size-inline, after state-delay, so a quick one shows nothing; it is aria-busy=\"true\", keeps its label and name, and a second press does not run it again",
         "Keys: role=\"toolbar\" with the host's label, and one Tab stop: Tab enters on the action focused last, the first at the start; Left and Right move between the actions shown and More actions, without wrapping; Home and End go to the first and the last. Disabled actions are reached; separators and the status slot are not",
         "More actions: aria-haspopup=\"menu\" and aria-expanded, named by moreLabel. Enter, Space or Down opens the menu on its first item, Up on its last; Up and Down move in it; Escape closes it and returns focus to More actions; Tab closes it",
