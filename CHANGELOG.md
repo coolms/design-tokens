@@ -6,6 +6,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 The file viewer, the file picker, the pane toolbar and the notification in the contract. 172 tokens (1 new). The components contract goes to 0.3.0.
 
+- `pane-toolbar` and `context-menu`: a disabled action's reason is the server's sentence, shown as given, no longer a code each host words: one wording in every host, translated on the server, and a new reason needs no host release. The code is for behaviour only (an icon, a fix link, tests); a host needing another form asks for a server-side variant. A node without a sentence (an older server) shows the one generic "Not available right now".
 - `pane-toolbar`, mail, message loading: opening a message never waits for its body. The pane opens at once with the row's sender, subject and date and a Loading message… state where the body goes; the list stays fully usable; a server row opens the same way; no control is disabled, the message's action row waits empty at its height; opening another message, Back or leaving the folder aborts the pending load, and a late answer never opens over a later choice; a failed load says the server's reason in the pane, with Try again there; the one 404 takes the row out; a message is marked read only once loaded.
 - `pane-toolbar`, mail, quick reply: each host says where a draft is written (composedIn: quick-reply or window) on every create and
   save, so a reply draft once in the compose window shows as the Draft line after a reload or on another device too.
