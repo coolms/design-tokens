@@ -2,7 +2,8 @@
 // The CoolMS design tokens, from ONE file: tokens/coolms.tokens.json, so the admin and the app
 // cannot drift apart. Writes:
 //
-//   dist/coolms-tokens.scss  the admin's `:root` and `:root[data-theme='dark']` blocks
+//   dist/coolms-tokens.scss  the admin's `:root` and `:root[data-theme='dark']` blocks, and an
+//                            `@media (pointer: coarse)` block for the sizes a touch screen needs larger
 //   dist/coolms-tokens.css   the same blocks for a web page read as CSS (its header a CSS comment: a `//`
 //                            line in CSS makes the browser drop the `:root` block behind it)
 //   dist/coolms-tokens.ts    the app's plain-data module
@@ -82,6 +83,9 @@ export function generate(file) {
         if (token.$type === 'color' && reference === null && !('dark' in ext) && !ext.invariant) {
             refused.push(`cms.${key} is a colour with neither a dark value nor a stated reason it does not flip`);
         }
+        if ('coarse' in ext && (token.$type !== 'dimension' || !/^\d+(\.\d+)?px$/.test(String(ext.coarse)))) {
+            refused.push(`cms.${key} has a coarse-pointer value, which only a size in px may have`);
+        }
     }
     if (refused.length) {
         throw new Refused(refused);
@@ -95,20 +99,30 @@ export function generate(file) {
     };
     const lightLines = [];
     const darkLines = [];
+    const coarseLines = [];
     for (const [key, token] of Object.entries(tokens)) {
         lightLines.push(css(key, token.$value));
         const dark = token.$extensions?.['org.coolms']?.dark;
         if (dark !== undefined) {
             darkLines.push(css(key, dark));
         }
+        const coarse = token.$extensions?.['org.coolms']?.coarse;
+        if (coarse !== undefined) {
+            coarseLines.push('    ' + css(key, coarse));
+        }
     }
-    const blocks = `:root {\n${lightLines.join('\n')}\n}\n\n:root[data-theme='dark'] {\n${darkLines.join('\n')}\n}\n`;
+    const coarseBlock = coarseLines.length === 0
+        ? ''
+        : `\n@media (pointer: coarse) {\n    :root {\n${coarseLines.join('\n')}\n    }\n}\n`;
+    const blocks = `:root {\n${lightLines.join('\n')}\n}\n\n:root[data-theme='dark'] {\n${darkLines.join('\n')}\n}\n${coarseBlock}`;
     const scss = `// ${HEADER}\n${blocks}`;
     const sheet = `/* ${HEADER} */\n${blocks}`;
 
     const light = {};
     const dark = {};
     const radius = {};
+    const controlHeight = {};
+    const controlHeightCoarse = {};
     for (const [key, token] of Object.entries(tokens)) {
         if (referencesIn(token.$value).length > 0) {
             continue;
@@ -126,6 +140,16 @@ export function generate(file) {
             }
             radius[r[2] ?? 'default'] = Number(px[1]);
         }
+        const h = /^control-height-([a-z]+)$/.exec(key);
+        if (h && token.$type === 'dimension') {
+            const px = /^(\d+(\.\d+)?)px$/.exec(token.$value);
+            if (!px) {
+                throw new Error(`cms.${key} is a control height that is not in px: ${token.$value}`);
+            }
+            const coarse = token.$extensions?.['org.coolms']?.coarse;
+            controlHeight[h[1]] = Number(px[1]);
+            controlHeightCoarse[h[1]] = coarse === undefined ? Number(px[1]) : Number(String(coarse).replace('px', ''));
+        }
     }
     const accent = { light: {}, dark: {} };
     for (const [name, key] of Object.entries(ACCENT)) {
@@ -140,10 +164,13 @@ export function generate(file) {
     const object = (o) => '{\n' + Object.entries(o).map(([k, v]) => `    ${k}: ${JSON.stringify(v)},`).join('\n') + '\n}';
     const nested = (o) => '{\n' + Object.entries(o).map(([k, v]) => `    ${k}: ${object(v).replace(/\n/g, '\n    ')},`).join('\n') + '\n}';
     const ts = `// ${HEADER}\n`
-        + '// Plain data, no runtime: colours as React Native parses them, radii in px as numbers.\n\n'
+        + '// Plain data, no runtime: colours as React Native parses them, radii and control heights in px as numbers.\n\n'
         + `export const light = ${object(light)} as const;\n\n`
         + `export const dark = ${object(dark)} as const satisfies Record<keyof typeof light, string>;\n\n`
         + `export const radius = ${object(radius)} as const;\n\n`
+        + '// A control\'s height in px: with a mouse, and on a touch screen (a coarse pointer), where md is a touch target.\n'
+        + `export const controlHeight = ${object(controlHeight)} as const;\n\n`
+        + `export const controlHeightCoarse = ${object(controlHeightCoarse)} as const;\n\n`
         + '// The brand accent, the app\'s default: base, hover, light (a tint), text (on the page), fg (on the accent).\n'
         + `export const accent = ${nested(accent)} as const;\n\n`
         + 'export type ColourToken = keyof typeof light;\n';
