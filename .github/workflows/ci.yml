@@ -32,6 +32,8 @@ jobs:
         run: node tests/token-expression.mjs
       - name: The stylesheet is CSS a browser keeps whole
         run: node tools/check-css.mjs dist/coolms-tokens.css
+      - name: A size a touch screen needs larger is written for a coarse pointer, and only a size may be
+        run: node tests/coarse-pointer.mjs
       # The check has teeth: a `//` header, as SCSS writes it, must fail it.
       - name: The stylesheet check refuses a // header
         run: |

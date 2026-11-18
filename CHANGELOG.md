@@ -4,6 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- Control heights: `--cms-control-height-sm` (32px), `--cms-control-height-md` (40px) and `--cms-control-height-lg` (44px). On a coarse pointer (touch) `md` is 44px, written in a `@media (pointer: coarse)` block, so a touch target stays 44px. A control's height is one of these, never a spacing token. The app's module carries them as `controlHeight` and `controlHeightCoarse`. The stylesheet check keeps that one at-rule and refuses any other.
 The file viewer, the file picker, the pane toolbar and the notification in the contract. 172 tokens (1 new). The components contract goes to 0.3.0.
 
 - `state`, a validation refusal (422 with violations): each field's message as given, next to its field, whether or not its type is declared; its top-level detail is not shown.

@@ -12,7 +12,7 @@
         "busy",
         "locked"
       ],
-      "notes": "locked = allowed once elevated (the server answered `elevate`): drawn with a lock, choosing it asks for elevation. In a client that never elevates an `elevate` answer is not offered at all."
+      "notes": "locked = allowed once elevated (the server answered `elevate`): drawn with a lock, choosing it asks for elevation. In a client that never elevates an `elevate` answer is not offered at all. Height: --cms-control-height-md (sm in a dense row, lg standing alone), 44px on a touch screen; never a spacing token."
     },
     "text-field": {
       "purpose": "One line of text, with a label, help and an error.",
@@ -24,7 +24,7 @@
         "invalid",
         "pinned"
       ],
-      "notes": "pinned = set by the environment and not editable here; the help names what pins it."
+      "notes": "pinned = set by the environment and not editable here; the help names what pins it. Height: --cms-control-height-md (sm in a dense row, lg standing alone), 44px on a touch screen; never a spacing token."
     },
     "select": {
       "purpose": "One choice from a list, with a label, help and an error.",
@@ -34,7 +34,8 @@
         "read-only",
         "invalid",
         "empty-list"
-      ]
+      ],
+      "notes": "Height: --cms-control-height-md (sm in a dense row, lg standing alone), 44px on a touch screen; never a spacing token."
     },
     "toggle": {
       "purpose": "On or off, with a label on the same baseline.",
