@@ -2,11 +2,11 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
-## Unreleased
+## 0.8.0 (2026-11-18)
+
+The file viewer, the file picker, the pane toolbar and the notification in the contract, and control heights. 175 tokens (4 new). The components contract goes to 0.3.0.
 
 - Control heights: `--cms-control-height-sm` (32px), `--cms-control-height-md` (40px) and `--cms-control-height-lg` (44px). On a coarse pointer (touch) `md` is 44px, written in a `@media (pointer: coarse)` block, so a touch target stays 44px. A control's height is one of these, never a spacing token. The app's module carries them as `controlHeight` and `controlHeightCoarse`. The stylesheet check keeps that one at-rule and refuses any other.
-The file viewer, the file picker, the pane toolbar and the notification in the contract. 172 tokens (1 new). The components contract goes to 0.3.0.
-
 - `state`, a validation refusal (422 with violations): each field's message as given, next to its field, whether or not its type is declared; its top-level detail is not shown.
 - `state`, whose words a refusal or a failure says: the line is a declared problem type, not the status. A problem with a declared type (anything but about:blank) says its detail as given at any status, a mail provider's refusal of a send (502) included; an undeclared fault (about:blank or no problem body) and a network failure say the generic sentence; a detail is drawn as plain text, never HTML.
 - `state`, and every refusal: a refused action says the server's detail as given, the code for behaviour only; a validation refusal says each field's message by its field; a server fault or a network failure says the host's one generic "Something went wrong. Try again.", never the fault's text; a 4xx with no detail says "Not available right now". `pane-toolbar`, mail: the refusal notice (at once) and a later rollback (read state) say the server's sentence as given.
