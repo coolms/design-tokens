@@ -2,6 +2,10 @@
 
 All notable changes to the design tokens are listed here. Versions follow [semantic versioning](https://semver.org/).
 
+## Unreleased
+
+- `pane-toolbar`: nothing is cut off at the row's edge, and More actions is always reached. Where the row still cannot hold the rest and More actions once every numbered action has gone behind it, the actions with no overflow number go too, one by one from the end of the row back, the fewest that let the row fit, and More actions lists them after the numbered ones. One action alone goes behind More actions when that alone saves room (one wider than an icon, such as one that keeps its label) and no other could go with it. Before, such a row was clipped and the actions past its edge could not be reached.
+
 ## 0.8.0 (2026-11-18)
 
 The file viewer, the file picker, the pane toolbar and the notification in the contract, and control heights. 175 tokens (4 new). The components contract goes to 0.3.0.
