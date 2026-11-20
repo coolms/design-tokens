@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.9.0 (2026-11-20)
+
+One screen shell at phone width for every section, the list's row anatomy, two avatar states, dates in the interface language, and a pane toolbar that never cuts an action off. 175 tokens (none new). The components contract goes to 0.4.0.
+
 - `screen-shell`, new: one screen of a section at phone width, one pane at a time. One top bar (leading: the section's navigation at its root, Back with the parent's name when nested; the title; trailing: the section's search, then the bell and the person's avatar), optional filter chips under it, the content, an optional floating primary action (or a menu of declared entries), and the section bar below. A list refreshes by a pull from its top, never a button in the bar. The same in every section and host; what fills the slots comes from the server's declared nodes. Below the tablet breakpoint only. A kit with no phone sections declares it not offered, with its reason.
 - `list`: a `row` part, one anatomy for every list on a phone screen (a 40px icon or avatar, a one-line title, semibold while unread, a one-line secondary line, trailing time and count; rows on one surface, separated by a light border, never cards), and the state `pulled`.
 - `avatar`: the states `connection` (on the person's own avatar in a bar, the live connection as its dot: connected, reconnecting or offline, said in words on a press) and `deleted` (a neutral person icon, never initials of a stored name). Initials leave out a trailing lowercase " via <service>" and take each word's first letter or digit.
