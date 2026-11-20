@@ -28,8 +28,12 @@ jobs:
         run: node tools/engines-check.mjs
       - name: The dist files are what the source generates
         run: node tools/design-tokens.mjs --check
+      - name: A token made of others writes their custom properties, and names none the file lacks
+        run: node tests/token-expression.mjs
       - name: The stylesheet is CSS a browser keeps whole
         run: node tools/check-css.mjs dist/coolms-tokens.css
+      - name: A size a touch screen needs larger is written for a coarse pointer, and only a size may be
+        run: node tests/coarse-pointer.mjs
       # The check has teeth: a `//` header, as SCSS writes it, must fail it.
       - name: The stylesheet check refuses a // header
         run: |
@@ -94,6 +98,8 @@ jobs:
           node tools/check-kit.mjs; rc=$?
           [ "$rc" = 2 ] || { echo "FOUND -- expected exit 2 with no kit, got $rc"; exit 1; }
           echo "CLEAR -- control kit FOUND (1), no kit UNEVALUABLE (2)"
+      - name: A component not offered is not owed as another component's state
+        run: node tests/check-kit-not-offered.mjs
       - name: The checker imports Node built-ins only
         run: |
           node -e '

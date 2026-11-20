@@ -2,7 +2,8 @@
 // The CoolMS design tokens, from ONE file: tokens/coolms.tokens.json, so the admin and the app
 // cannot drift apart. Writes:
 //
-//   dist/coolms-tokens.scss  the admin's `:root` and `:root[data-theme='dark']` blocks
+//   dist/coolms-tokens.scss  the admin's `:root` and `:root[data-theme='dark']` blocks, and an
+//                            `@media (pointer: coarse)` block for the sizes a touch screen needs larger
 //   dist/coolms-tokens.css   the same blocks for a web page read as CSS (its header a CSS comment: a `//`
 //                            line in CSS makes the browser drop the `:root` block behind it)
 //   dist/coolms-tokens.ts    the app's plain-data module
@@ -11,7 +12,8 @@
 //
 // Refuses -- writes nothing -- a colour token with neither a dark value nor a stated reason it
 // does not flip ("invariant"): a colour that forgot its dark value was invisible until a dark
-// panel showed it. The app's module carries what the app can paint (the app's three
+// panel showed it. Refuses too a token naming one the file does not define, whole (`{cms.border}`) or inside an
+// expression (`calc({cms.row-height} + 2 * {cms.space-2})`, written with each name as its custom property). The app's module carries what the app can paint (the app's three
 // conditions): colours as literal values React Native parses, aliases left out, `dark` complete --
 // every key of `light`, an invariant carrying its one value -- and radii as numbers. The brand
 // accent is apart from `light` and `dark`: `accent` holds its five tokens per scheme, the app's
@@ -54,6 +56,11 @@ function referenceOf(value) {
     return m ? m[1] : null;
 }
 
+/** Every token a value names, whole or inside an expression: `calc({cms.row-height} + 2 * {cms.space-2})` -> both. */
+function referencesIn(value) {
+    return typeof value === 'string' ? [...value.matchAll(/\{cms\.([a-z0-9-]+)\}/g)].map((m) => m[1]) : [];
+}
+
 /** surface-muted -> surfaceMuted */
 function camel(key) {
     return key.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
@@ -68,11 +75,16 @@ export function generate(file) {
     for (const [key, token] of Object.entries(tokens)) {
         const ext = token.$extensions?.['org.coolms'] ?? {};
         const reference = referenceOf(token.$value);
-        if (reference !== null && !(reference in tokens)) {
-            refused.push(`cms.${key} refers to cms.${reference}, which the file does not define`);
+        for (const named of referencesIn(token.$value)) {
+            if (!(named in tokens)) {
+                refused.push(`cms.${key} refers to cms.${named}, which the file does not define`);
+            }
         }
         if (token.$type === 'color' && reference === null && !('dark' in ext) && !ext.invariant) {
             refused.push(`cms.${key} is a colour with neither a dark value nor a stated reason it does not flip`);
+        }
+        if ('coarse' in ext && (token.$type !== 'dimension' || !/^\d+(\.\d+)?px$/.test(String(ext.coarse)))) {
+            refused.push(`cms.${key} has a coarse-pointer value, which only a size in px may have`);
         }
     }
     if (refused.length) {
@@ -80,27 +92,39 @@ export function generate(file) {
     }
 
     const css = (key, value) => {
-        const reference = referenceOf(value);
-        return `    --cms-${key}: ${reference === null ? value : `var(--cms-${reference})`};`;
+        const written = typeof value === 'string'
+            ? value.replace(/\{cms\.([a-z0-9-]+)\}/g, (_, named) => `var(--cms-${named})`)
+            : value;
+        return `    --cms-${key}: ${written};`;
     };
     const lightLines = [];
     const darkLines = [];
+    const coarseLines = [];
     for (const [key, token] of Object.entries(tokens)) {
         lightLines.push(css(key, token.$value));
         const dark = token.$extensions?.['org.coolms']?.dark;
         if (dark !== undefined) {
             darkLines.push(css(key, dark));
         }
+        const coarse = token.$extensions?.['org.coolms']?.coarse;
+        if (coarse !== undefined) {
+            coarseLines.push('    ' + css(key, coarse));
+        }
     }
-    const blocks = `:root {\n${lightLines.join('\n')}\n}\n\n:root[data-theme='dark'] {\n${darkLines.join('\n')}\n}\n`;
+    const coarseBlock = coarseLines.length === 0
+        ? ''
+        : `\n@media (pointer: coarse) {\n    :root {\n${coarseLines.join('\n')}\n    }\n}\n`;
+    const blocks = `:root {\n${lightLines.join('\n')}\n}\n\n:root[data-theme='dark'] {\n${darkLines.join('\n')}\n}\n${coarseBlock}`;
     const scss = `// ${HEADER}\n${blocks}`;
     const sheet = `/* ${HEADER} */\n${blocks}`;
 
     const light = {};
     const dark = {};
     const radius = {};
+    const controlHeight = {};
+    const controlHeightCoarse = {};
     for (const [key, token] of Object.entries(tokens)) {
-        if (referenceOf(token.$value) !== null) {
+        if (referencesIn(token.$value).length > 0) {
             continue;
         }
         if (token.$type === 'color' && !ADMIN_BRAND.test(key)) {
@@ -116,6 +140,16 @@ export function generate(file) {
             }
             radius[r[2] ?? 'default'] = Number(px[1]);
         }
+        const h = /^control-height-([a-z]+)$/.exec(key);
+        if (h && token.$type === 'dimension') {
+            const px = /^(\d+(\.\d+)?)px$/.exec(token.$value);
+            if (!px) {
+                throw new Error(`cms.${key} is a control height that is not in px: ${token.$value}`);
+            }
+            const coarse = token.$extensions?.['org.coolms']?.coarse;
+            controlHeight[h[1]] = Number(px[1]);
+            controlHeightCoarse[h[1]] = coarse === undefined ? Number(px[1]) : Number(String(coarse).replace('px', ''));
+        }
     }
     const accent = { light: {}, dark: {} };
     for (const [name, key] of Object.entries(ACCENT)) {
@@ -130,10 +164,13 @@ export function generate(file) {
     const object = (o) => '{\n' + Object.entries(o).map(([k, v]) => `    ${k}: ${JSON.stringify(v)},`).join('\n') + '\n}';
     const nested = (o) => '{\n' + Object.entries(o).map(([k, v]) => `    ${k}: ${object(v).replace(/\n/g, '\n    ')},`).join('\n') + '\n}';
     const ts = `// ${HEADER}\n`
-        + '// Plain data, no runtime: colours as React Native parses them, radii in px as numbers.\n\n'
+        + '// Plain data, no runtime: colours as React Native parses them, radii and control heights in px as numbers.\n\n'
         + `export const light = ${object(light)} as const;\n\n`
         + `export const dark = ${object(dark)} as const satisfies Record<keyof typeof light, string>;\n\n`
         + `export const radius = ${object(radius)} as const;\n\n`
+        + '// A control\'s height in px: with a mouse, and on a touch screen (a coarse pointer), where md is a touch target.\n'
+        + `export const controlHeight = ${object(controlHeight)} as const;\n\n`
+        + `export const controlHeightCoarse = ${object(controlHeightCoarse)} as const;\n\n`
         + '// The brand accent, the app\'s default: base, hover, light (a tint), text (on the page), fg (on the accent).\n'
         + `export const accent = ${nested(accent)} as const;\n\n`
         + 'export type ColourToken = keyof typeof light;\n';

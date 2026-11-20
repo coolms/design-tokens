@@ -1140,10 +1140,75 @@
             "$value": "44px",
             "$description": "The smallest touch target at tablet and phone widths: a button, a row, a tab, a chip."
         },
+        "control-height-sm": {
+            "$type": "dimension",
+            "$value": "32px",
+            "$description": "A small control's height: a button, an input, a select or a chip in a dense row. A control's height is a control-height token, never a spacing token."
+        },
+        "control-height-md": {
+            "$type": "dimension",
+            "$value": "40px",
+            "$description": "A control's height: a button, an input, a select or a chip, and every control in one row (the quick reply's). On a coarse pointer (touch) it is 44px, so a touch target stays 44px.",
+            "$extensions": {
+                "org.coolms": {
+                    "coarse": "44px"
+                }
+            }
+        },
+        "control-height-lg": {
+            "$type": "dimension",
+            "$value": "44px",
+            "$description": "A large control's height: a primary action that stands alone, a sign-in field."
+        },
         "topbar-height": {
             "$type": "dimension",
             "$value": "64px",
             "$description": "The Workspace's top bar."
+        },
+        "pane-toolbar-height": {
+            "$type": "dimension",
+            "$value": "calc({cms.row-height} + 2 * {cms.space-2})",
+            "$description": "The action row at the top of every pane (the pane-toolbar contract entry), and the side column's first element beside it: a control's height (row-height) with space-2 above and below it, 52px. At tablet and phone widths a touch-target-min control fits it with space-1 above and below."
+        },
+        "spinner-color": {
+            "$type": "color",
+            "$value": "{cms.accent-text}",
+            "$description": "The turning arc of the state component's spinner."
+        },
+        "spinner-track": {
+            "$type": "color",
+            "$value": "{cms.border}",
+            "$description": "The spinner's full circle under the arc."
+        },
+        "spinner-size-inline": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$description": "A spinner beside text."
+        },
+        "spinner-size-block": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$description": "A spinner centred in a card."
+        },
+        "spinner-size-page": {
+            "$type": "dimension",
+            "$value": "32px",
+            "$description": "A spinner centred in a page's content area."
+        },
+        "spinner-stroke": {
+            "$type": "dimension",
+            "$value": "2px",
+            "$description": "The width of the arc and the track."
+        },
+        "spinner-duration": {
+            "$type": "duration",
+            "$value": "800ms",
+            "$description": "One turn of the spinner."
+        },
+        "state-delay": {
+            "$type": "duration",
+            "$value": "300ms",
+            "$description": "How long a loading state waits before it shows: a read answered sooner shows nothing."
         }
     }
 }

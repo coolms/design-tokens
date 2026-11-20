@@ -11,7 +11,7 @@ apart.
 | `tools/design-tokens.mjs` | The generator. It reads the source and writes the two files below. |
 | `dist/coolms-tokens.scss` | CSS custom properties: a `:root` block for the light scheme and a `:root[data-theme='dark']` block for what changes in the dark one. |
 | `dist/coolms-tokens.css` | The same two blocks for a page that reads them as CSS, its header a CSS comment. A web kit copies this one: the SCSS file's `//` header is not CSS, and a browser drops the `:root` block behind it. `tools/check-css.mjs` checks a copy. |
-| `dist/coolms-tokens.ts` | A plain-data module for React Native: `light`, `dark`, `radius` and `accent`, with no runtime code. |
+| `dist/coolms-tokens.ts` | A plain-data module for React Native: `light`, `dark`, `radius`, `controlHeight`, `controlHeightCoarse` and `accent`, with no runtime code. |
 | `fonts/inter.css`, `fonts/*.woff2` | Inter, self-hosted: one variable woff2 per subset (Latin, Latin Extended, Cyrillic), weights 400 to 700, 152,072 bytes in all; `inter.css` declares them with `unicode-range`, so a page loads only what it uses. SIL Open Font License 1.1, in `fonts/OFL.txt`. React Native cannot load woff2; the app needs the same font as TTF. |
 
 Never edit a file in `dist/` by hand. Change the source, then regenerate.
@@ -26,7 +26,8 @@ node tools/design-tokens.mjs --check  # writes nothing; checks both dist files a
 ```
 
 The generator refuses, and writes nothing, when a colour has neither a dark value nor a reason it doesn't change,
-or when a token names one that doesn't exist.
+or when a token names one that doesn't exist, whole or inside an expression such as
+`calc({cms.row-height} + 2 * {cms.space-2})`, which the stylesheet writes with each name as its custom property.
 
 | Exit code | Meaning |
 |---|---|
@@ -54,6 +55,21 @@ The consumer's CI checks two things:
 - the file at the lock's `commit` hashes the same, and that commit is the tag's.
 
 To move to a new version, a consumer opens a pull request that changes the lock and the copy together.
+
+## Control heights
+
+A control's height is a control-height token, never a spacing token:
+
+| Token | Mouse | Touch (`pointer: coarse`) | For |
+|---|---|---|---|
+| `--cms-control-height-sm` | 32px | 32px | a dense row: a small button, a chip, a compact input |
+| `--cms-control-height-md` | 40px | 44px | a button, an input, a select; every control in one row |
+| `--cms-control-height-lg` | 44px | 44px | a primary action that stands alone, a sign-in field |
+
+On a touch screen `md` is 44px, the smallest touch target (`--cms-touch-target-min`): the stylesheet writes it again
+inside `@media (pointer: coarse)`. A token takes a touch value with `"coarse"` in its `org.coolms` extension, and only
+a size in px may; the generator refuses any other. The app's module carries the heights as numbers, `controlHeight`
+and `controlHeightCoarse`.
 
 ## The UI contract
 
