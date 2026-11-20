@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `screen-shell`, new: one screen of a section at phone width, one pane at a time. One top bar (leading: the section's navigation at its root, Back with the parent's name when nested; the title; trailing: the section's search, then the bell and the person's avatar), optional filter chips under it, the content, an optional floating primary action (or a menu of declared entries), and the section bar below. A list refreshes by a pull from its top, never a button in the bar. The same in every section and host; what fills the slots comes from the server's declared nodes. Below the tablet breakpoint only. A kit with no phone sections declares it not offered, with its reason.
+- `list`: a `row` part, one anatomy for every list on a phone screen (a 40px icon or avatar, a one-line title, semibold while unread, a one-line secondary line, trailing time and count; rows on one surface, separated by a light border, never cards), and the state `pulled`.
+- `avatar`: the states `connection` (on the person's own avatar in a bar, the live connection as its dot: connected, reconnecting or offline, said in words on a press) and `deleted` (a neutral person icon, never initials of a stored name). Initials leave out a trailing lowercase " via <service>" and take each word's first letter or digit.
+- Dates and times, in every component: in the interface language the person chose, never the browser's (`conventions`).
 - `pane-toolbar`: nothing is cut off at the row's edge, and More actions is always reached. Where the row still cannot hold the rest and More actions once every numbered action has gone behind it, the actions with no overflow number go too, one by one from the end of the row back, the fewest that let the row fit, and More actions lists them after the numbered ones. One action alone goes behind More actions when that alone saves room (one wider than an icon, such as one that keeps its label) and no other could go with it. Before, such a row was clipped and the actions past its edge could not be reached.
 
 ## 0.8.0 (2026-11-18)
