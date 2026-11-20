@@ -419,10 +419,10 @@
         "The bell and the avatar are the shell's, not the section's: the same in every section, in the same place."
       ],
       "host": {
-        "supplies": "the title, the back target and its label, the root navigation, the section's search, the filters, the primary action or menu when declared, the refresh call",
+        "supplies": "the title and the back target, both declared nodes: /title, its label the section's root title, and /back, its meta.target section or parent, absent at a root. Back is drawn with the parent's name from the data, the node's label as the fallback. Also the root navigation, the section's search, the filters, the primary action or menu when declared, and the refresh call",
         "left to it": "what search, the primary action and refresh do; the section's content"
       },
-      "notes": "First built for the workspace's mail, chat and drive, web and app. The slots' content comes from NaviGraph trees (navi.toolbar.email.*, navi.toolbar.vfs, a chat tree to come); the shell carries no list of actions of its own. A kit with no phone sections (the admin) declares it not offered, with its reason."
+      "notes": "First built for the workspace's mail, chat and drive, web and app. The slots' content comes from NaviGraph trees: mail's navi.toolbar.email.*, drive's navi.toolbar.drive.folder (its create entries contributed per installed kind), chat's navi.toolbar.chat.list and navi.toolbar.chat.conversation. The drive and chat trees are the ones agreed with the server; a host draws a slot only from a tree the server serves. The shell carries no list of actions of its own. A kit with no phone sections (the admin) declares it not offered, with its reason."
     }
   },
   "conventions": [
