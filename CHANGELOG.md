@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.10.0 (2026-11-20)
+
+The screen shell's search: what its searching state draws. 175 tokens (none new). The components contract goes to 0.5.0.
+
 - `screen-shell`: a `search` part. While the section's search is open, the bar is Close then the host's search field, in place of the title and the icons, at the same height; search opens in place, never as a screen of its own. `api.searching` gives the field and the Close.
 ## 0.9.0 (2026-11-20)
 
