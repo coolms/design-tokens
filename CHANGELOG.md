@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.12.0 (2026-11-21)
+
+List density as tokens, and rows with columns. The components contract goes to 0.7.0.
+
 - List density as tokens, used by every list: `list-row-height` (40px, one line) and `list-row-height-two-line` (52px) from tablet width up; `list-row-height-phone` (48px) and `list-row-height-phone-two-line` (60px) at phone width. The `list` contract entry's new `density` part says every list takes its row height from them, never from its own padding, and that at phone width every control in a row is at least `touch-target-min` (44px).
 - `list`: a `columns` part, for a list whose rows show the same fields side by side from tablet width up (Drive's name, modified, size and owner): a header row kept in sight; the name column first, the only one that truncates; numbers at the end; an empty value shown as nothing, and a column no row has not drawn; one line, `list-row-height`. Below tablet width there are no columns: two lines, the other values joined by " · " (`list-row-height-phone-two-line`).
 
