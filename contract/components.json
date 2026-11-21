@@ -121,7 +121,8 @@
         "pulled"
       ],
       "parts": {
-        "row": "One anatomy for every list on a phone screen: a leading icon or avatar (40px); a title, one line, --cms-font-size-body, semibold while unread; a secondary line, one line, --cms-font-size-meta, --cms-text-muted; trailing meta, the time or date with a count badge under it. Rows sit on one surface (--cms-surface), separated by --cms-border-light, padded --cms-space-3 --cms-space-4; no bordered cards and no list inside a card."
+        "row": "One anatomy for every list on a phone screen: a leading icon or avatar (40px); a title, one line, --cms-font-size-body, semibold while unread; a secondary line, one line, --cms-font-size-meta, --cms-text-muted; trailing meta, the time or date with a count badge under it. Rows sit on one surface (--cms-surface), separated by --cms-border-light, padded --cms-space-3 --cms-space-4; no bordered cards and no list inside a card.",
+        "density": "Every list's row height comes from the list density tokens, the same in every list (Mail, Chat, Drive and the rest), and in no list from its own padding: from tablet width up --cms-list-row-height (one line, 40px) and --cms-list-row-height-two-line (a title and a secondary line, 52px); at phone width --cms-list-row-height-phone (48px) and --cms-list-row-height-phone-two-line (60px). Each is the row's least height, its content centred in it; a row whose text wraps grows. At phone width the whole row is the touch target, and every control in it (a checkbox, a star, a menu button) is at least --cms-touch-target-min (44px)."
       },
       "notes": "pulled = the list is being pulled from its top to refresh it (screen-shell, pull)."
     },

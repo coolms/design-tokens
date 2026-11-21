@@ -832,6 +832,26 @@
             "$type": "dimension",
             "$value": "48px"
         },
+        "list-row-height": {
+            "$type": "dimension",
+            "$value": "40px",
+            "$description": "A list row with one line of text, from tablet width up: Mail's, Chat's and Drive's lists and every other list. The row's least height; a row whose text wraps grows."
+        },
+        "list-row-height-two-line": {
+            "$type": "dimension",
+            "$value": "52px",
+            "$description": "A list row with a title and a secondary line, from tablet width up."
+        },
+        "list-row-height-phone": {
+            "$type": "dimension",
+            "$value": "48px",
+            "$description": "A list row with one line of text at phone width (below the tablet breakpoint). The whole row is the touch target, and every control in it is at least touch-target-min."
+        },
+        "list-row-height-phone-two-line": {
+            "$type": "dimension",
+            "$value": "60px",
+            "$description": "A list row with a title and a secondary line at phone width (below the tablet breakpoint)."
+        },
         "row-selected": {
             "$type": "color",
             "$value": "#eef2f7",

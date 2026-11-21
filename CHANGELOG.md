@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- List density as tokens, used by every list: `list-row-height` (40px, one line) and `list-row-height-two-line` (52px) from tablet width up; `list-row-height-phone` (48px) and `list-row-height-phone-two-line` (60px) at phone width. The `list` contract entry's new `density` part says every list takes its row height from them, never from its own padding, and that at phone width every control in a row is at least `touch-target-min` (44px).
+
 ## 0.11.0 (2026-11-21)
 
 The served trees' icon names as a list, and two screen-shell rules. The components contract goes to 0.6.0.
