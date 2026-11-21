@@ -26,7 +26,8 @@
     },
     "arrow-left": {
       "interfaces": [
-        "admin"
+        "admin",
+        "workspace"
       ]
     },
     "arrow-repeat": {
@@ -112,7 +113,8 @@
     },
     "cloud-upload": {
       "interfaces": [
-        "admin"
+        "admin",
+        "workspace"
       ]
     },
     "collection": {
@@ -204,9 +206,21 @@
         "admin"
       ]
     },
+    "file-earmark-spreadsheet": {
+      "interfaces": [
+        "admin",
+        "workspace"
+      ]
+    },
     "file-earmark-text": {
       "interfaces": [
         "admin"
+      ]
+    },
+    "file-earmark-word": {
+      "interfaces": [
+        "admin",
+        "workspace"
       ]
     },
     "floppy": {
@@ -377,12 +391,14 @@
     },
     "pencil-square": {
       "interfaces": [
-        "admin"
+        "admin",
+        "workspace"
       ]
     },
     "people": {
       "interfaces": [
-        "admin"
+        "admin",
+        "workspace"
       ]
     },
     "people-fill": {
