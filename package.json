@@ -20,6 +20,7 @@
     "./tokens.ts": "./dist/coolms-tokens.ts",
     "./contract/components.json": "./contract/components.json",
     "./contract/server-states.json": "./contract/server-states.json",
+    "./contract/icons.json": "./contract/icons.json",
     "./check-kit": "./tools/check-kit.mjs"
   },
   "scripts": {
