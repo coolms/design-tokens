@@ -4,6 +4,12 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+The served trees' icon names as a list, and two screen-shell rules. The components contract goes to 0.6.0.
+
+- `contract/icons.json`, new: every icon name the served navigation trees use (Bootstrap Icons names, as the trees write them), each with the interfaces whose trees use it, taken from the trees' `interfaces` declarations. 110 names; 27 are used by the workspace too. A host draws every name listed for an interface it serves; the backend checks that no tree uses a name missing here, so a new name breaks a check, not an interface.
+- `screen-shell`: the state `bar-hidden`. While the content scrolls down, the bar and the filters row step out of view; any scroll up, the content's top, or focus moving into the bar brings them back at once. The section bar stays, and it never happens while searching, pulling or refreshing. `api.barHidden` lets a host hold the bar.
+- `screen-shell`: one header at phone width. While a screen shell is drawn, the host's own top bar gives way, and what it carried for the whole host (the account, the host's search) moves to the shell's bar. The kit's app shell does this when a screen shell is mounted in it, not a host's CSS.
+
 ## 0.10.0 (2026-11-20)
 
 The screen shell's search: what its searching state draws. 175 tokens (none new). The components contract goes to 0.5.0.
