@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.13.0 (2026-11-22)
+
+The icon list as the trees and their code use it. The icons contract goes to 0.7.0.
+
 - `contract/icons.json` 0.7.0: the list as the trees and the code that builds them use it now, contributors included, with the Drive sections and the Chat composer. `file-earmark-text`, `folder2` and `images` are used by the workspace too; `paperclip` is new, for both interfaces.
 
 ## 0.12.0 (2026-11-21)
