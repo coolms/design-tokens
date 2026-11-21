@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.11.0 (2026-11-21)
+
 The served trees' icon names as a list, and two screen-shell rules. The components contract goes to 0.6.0.
 
 - `contract/icons.json`, new: every icon name the served navigation trees use (Bootstrap Icons names, as the trees write them), each with the interfaces whose trees use it, taken from the trees' `interfaces` declarations. 110 names; 27 are used by the workspace too. A host draws every name listed for an interface it serves; the backend checks that no tree uses a name missing here, so a new name breaks a check, not an interface.
