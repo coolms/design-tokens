@@ -1,6 +1,6 @@
 {
   "$comment": "The components every CoolMS UI kit provides, by name, and the states each must render. A kit declares which of its components implements each entry (kit.contract.json); tools/check-kit.mjs fails when one is missing, or a state is. Names follow ui-angular's where it has one.",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "components": {
     "button": {
       "purpose": "An action. Primary, secondary, danger; an icon may lead.",
@@ -319,7 +319,8 @@
         "action": "A button with its icon, then its label. Actions sit space-1 apart. In a web kit, an action whose label is hidden carries cms-pane-toolbar__action--bare, and an action drawn without an icon (a name the table lacks) carries cms-pane-toolbar__action--text; the row carries cms-pane-toolbar--labels-partly-hidden or cms-pane-toolbar--labels-hidden as its state",
         "separator": "Between two groups: a vertical line in border, role=\"separator\" with aria-orientation=\"vertical\", never focused. Drawn only between two groups that both still show something in the row",
         "more": "The More actions button (...), after the last action shown, drawn only while at least one action is behind it: a menu button that opens the kit's context-menu, listing those actions",
-        "status slot": "At the end of the row: text, not an action, in text-muted at font-size-meta. It takes the width the actions leave and truncates with an ellipsis, its whole text kept as its title"
+        "status slot": "At the end of the row: text, not an action, in text-muted at font-size-meta. It takes the width the actions leave and truncates with an ellipsis, its whole text kept as its title",
+        "header row": "From tablet width up a screen of columns has two rows that line up across it. The first is the toolbar row, --cms-pane-toolbar-height: in Mail, Compose at the top of the side column, the list's bar (Refresh and when it was synced) and the open message's actions. The second is the header row, --cms-pane-header-height: in Mail, the mailbox card in the side column and the list's title with its filters. Each row is that height exactly in every column, its content centred in it, so the bottom borders of each row are one line across the screen; a column with nothing for a row keeps the row, empty. Below breakpoint-tablet one column shows at a time and the rows are the screen shell's."
       },
       "behaviour": [
         "Alignment: every pane of a screen starts at the same top and draws its row there, at pane-toolbar-height, so the rows line up across the screen. A pane with nothing to act on keeps its row, empty, at that height. The side column beside the panes starts at that top too: its first element aligns its top edge with the rows, and an element that is one control takes pane-toolbar-height exactly, the control centred in it",
