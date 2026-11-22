@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.17.0 (2026-11-22)
+
+A list's selection, the same in every host. The components contract goes to 0.11.0.
+
 - `list`: a `selection` part (components contract 0.11.0), the same in every host: click opens and clears the checks; Ctrl/Cmd+click toggles; Shift+click and Shift+Up/Down check the range from the anchor; Space toggles the focused row; Ctrl/Cmd+A checks every loaded row; Esc clears the checks; rows that cannot be acted on are never checked; from two checked rows the reading pane shows the count; aria-multiselectable, each checked row aria-selected, the count a status line.
 ## 0.16.0 (2026-11-22)
 
