@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.19.0 (2026-11-23)
+
+Two icon names for the workspace's empty panes. The icon list goes to 0.8.0.
+
 - `contract/icons.json` 0.8.0: `chat-dots` and `folder2-open` are used by the workspace too, for the Chat and Drive empty panes.
 
 ## 0.18.0 (2026-11-23)
