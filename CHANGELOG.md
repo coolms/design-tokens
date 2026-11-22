@@ -4,6 +4,11 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.16.0 (2026-11-22)
+
+Two pane rows line up across a screen. The components contract goes to 0.10.0.
+
+- `pane-header-height` (row-height and space-3 above and below: 60px), and the `pane-toolbar` entry's `header row` part (components contract 0.10.0): from tablet width up a screen of columns has two rows that line up across it, the toolbar row at `pane-toolbar-height` (Mail: Compose, the list's bar, the message's actions) and the header row at `pane-header-height` (Mail: the mailbox card, the list's title with its filters), their bottom borders one line across the screen.
 ## 0.15.0 (2026-11-22)
 
 The settings layout as a contract entry. The components contract goes to 0.9.0.

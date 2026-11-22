@@ -1195,6 +1195,11 @@
             "$value": "calc({cms.row-height} + 2 * {cms.space-2})",
             "$description": "The action row at the top of every pane (the pane-toolbar contract entry), and the side column's first element beside it: a control's height (row-height) with space-2 above and below it, 52px. At tablet and phone widths a touch-target-min control fits it with space-1 above and below."
         },
+        "pane-header-height": {
+            "$type": "dimension",
+            "$value": "calc({cms.row-height} + 2 * {cms.space-3})",
+            "$description": "The row under the pane toolbar in every column, from tablet width up: Mail's mailbox card in the side column and the list's title with its filters; each column's second row is this tall, so its bottom border lines up with the others'. A control's height (row-height) with space-3 above and below it."
+        },
         "spinner-color": {
             "$type": "color",
             "$value": "{cms.accent-text}",
