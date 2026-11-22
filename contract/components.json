@@ -1,6 +1,6 @@
 {
   "$comment": "The components every CoolMS UI kit provides, by name, and the states each must render. A kit declares which of its components implements each entry (kit.contract.json); tools/check-kit.mjs fails when one is missing, or a state is. Names follow ui-angular's where it has one.",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "components": {
     "button": {
       "purpose": "An action. Primary, secondary, danger; an icon may lead.",
@@ -385,6 +385,22 @@
       },
       "behaviour": "The same in both hosts. Pressing a notification's row (a click, a tap, or Enter on it) marks it read, whatever it carries; it navigates only when its action's presentation is row and the host knows the destination, and a button action navigates only from its button, which marks it read too. So a notification with no action, or one whose destination the host does not know, can still be read, and the unread count goes down by reading as well as by dismissing. Expanding the body with the chevron also marks it read. The button is a real button, in the notification's tab order after its text, named by its label. A notification may be updated in place by the server (the same id with a new title, body, extras and createdAt, as missed calls from one conversation are grouped into one while it is unread): a host replaces that row where it is and never adds a second one, places it again by createdAt (the list stays newest first, so it moves to the top), and counts it once among the unread. A host draws the server's title and body; extras such as count and times are there for a host that wants its own words. A notification shown outside the app (a phone's or a browser's) uses the notification's id as its collapse key or tag, so it too is replaced, never repeated.",
       "notes": "The action is served with the notification type registry's amendment; until a host reads it, a row shows no button. First built by the admin's notification drawer and the Workspace's notification list. No release of this contract until ui-react and ui-angular both implement it, as with the other entries."
+    },
+    "settings-shell": {
+      "purpose": "The layout every settings-like page shares: a list of sections on the left, the chosen section on the right. The admin's Settings and My Profile, and any page whose content is a set of named sections, one shown at a time.",
+      "states": [
+        "default",
+        "with-head",
+        "section-chosen",
+        "empty"
+      ],
+      "parts": {
+        "list": "The sections, in the order the page's declared tree gives them, grouped where it groups them; each a row with its label (and icon where the tree gives one), the chosen one marked (aria-current), a danger section in the danger colour. The page passes the sections; the layout never chooses what is listed.",
+        "head": "Optional, above the list, in the list's column: what the page shows of its subject whatever section is open (My Profile's avatar, colour and name card). It scrolls with the list.",
+        "section": "The chosen section, its own title at its top, its content below. Choosing another section changes the section and the address only.",
+        "phone": "Below the tablet breakpoint the list and the section are not side by side: the list (with its head) is the screen; choosing a section shows it in the list's place, with a Back to the list. The address names the section, so a section can be opened directly."
+      },
+      "notes": "From tablet width up the list's column is resizable (the pane splitter), between about 200 and 440px. A page with sections from a declared tree takes their labels, icons, order and conditions from it, and adds none of its own."
     },
     "screen-shell": {
       "purpose": "One screen of a section at phone width, one pane at a time: one top bar, optional filter chips, the content, an optional floating primary action, and the section bar below. The same in every section and every host, so moving between sections never changes where things are. What goes in its slots (the title, where Back leads, the primary action, the filters, the section's search) is the host's, from the server's declared nodes; the shell only lays them out.",

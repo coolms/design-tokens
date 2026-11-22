@@ -4,6 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `settings-shell`, new (components contract 0.9.0): the settings layout. A section list on the left (from the page's declared tree, grouped and ordered as it says), the chosen section on the right, an optional head above the list (My Profile's avatar, colour and name card), and at phone width the list, then a section in its place with a Back. The admin's Settings and My Profile share it.
 ## 0.14.0 (2026-11-22)
 
 The mail list's three-line row, and the empty pane. The components contract goes to 0.8.0.
