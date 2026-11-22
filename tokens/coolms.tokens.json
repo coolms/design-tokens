@@ -852,6 +852,11 @@
             "$value": "60px",
             "$description": "A list row with a title and a secondary line at phone width (below the tablet breakpoint)."
         },
+        "list-row-height-three-line": {
+            "$type": "dimension",
+            "$value": "84px",
+            "$description": "A list row with three lines, the same at every width: the mail list's (the sender and the date; the subject; the preview). Three lines of .875rem, .8125rem and .75rem at line-height 1.5, two 2px gaps, 10px above and below and a 1px rule, at a 16px root. The row's least height; at a larger font it grows."
+        },
         "row-selected": {
             "$type": "color",
             "$value": "#eef2f7",

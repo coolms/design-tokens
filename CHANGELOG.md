@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `list-row-height-three-line` (84px, every width): the mail list's row, three lines (the sender and the date; the subject; the preview). The `list` contract's `density` part says the mail list takes it at every width, and that the compact one- and two-line heights are for the other lists, Drive's among them. The components contract goes to 0.8.0.
+
 ## 0.13.0 (2026-11-22)
 
 The icon list as the trees and their code use it. The icons contract goes to 0.7.0.
