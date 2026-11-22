@@ -4,6 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `state`: the empty kind takes an optional `icon` (a name from `contract/icons.json`), and a new part, `empty pane`: a pane with nothing to show (Mail's reading pane, Chat's conversation pane, an empty Drive folder) draws the state, kind empty, placement page, from the node the server declares for it (its label, description, icon and, where given, its one action, such as New chat or Upload), never blank and with no words of the host's own. From tablet width up only.
 - `list-row-height-three-line` (84px, every width): the mail list's row, three lines (the sender and the date; the subject; the preview). The `list` contract's `density` part says the mail list takes it at every width, and that the compact one- and two-line heights are for the other lists, Drive's among them. The components contract goes to 0.8.0.
 
 ## 0.13.0 (2026-11-22)

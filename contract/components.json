@@ -176,6 +176,7 @@
         "kind": "loading | empty | error | denied | elevation-required",
         "title": "string: what the state is, in the caller's words",
         "description": "string, optional: why, or what to do",
+        "icon": "string, optional, the empty kind only: an icon name from contract/icons.json, drawn above the title in the state's text colour, decorative",
         "action": "optional: a label and a handler -- Retry for an error, or what an empty state suggests; for elevation-required the kit's own Elevate, the same flow the error banner offers. denied never offers an action: a refusal is the server's last word, and a retry or a request would only be refused again",
         "placement": "page (centred in the content area) | block (centred in its card) | inline (small, beside text)"
       },
@@ -186,7 +187,10 @@
         "elevation-required is not offered by a kit whose clients never elevate (notOffered, with the reason)",
         "Whose words a refusal or a failure says, in every host and every component. The line is whether the server declared the problem, not the status class: a problem response with a declared type (any type but about:blank) carries a detail written for the person, and the host says that detail as given, whatever the status -- a refused action (4xx), a validation refusal, and a declared failure such as a mail provider's refusal of a send (502) alike; its type is for behaviour only (an icon, a link to the fix, a retry, tests), never to replace or rewrite the text, and there is no host wording per type. A validation refusal (422 with violations) says each field's message as given, next to its field (outside a form, the first one), whether or not its type is declared; its top-level detail is not shown. An undeclared fault (type about:blank, or no problem body) and a network failure say the host's own one generic sentence, \"Something went wrong. Try again.\", never any text of theirs, which may carry internals. A declared problem with no detail (an older server) says the one generic \"Not available right now\". A detail is always drawn as plain text, never as HTML. The same holds for an action's disabled reason (pane-toolbar, Disabled)"
       ],
-      "notes": "Supersedes loading, empty-state and elevation-required: those three stay in the contract until every kit implements state, then leave it in the next contract version. error-banner stays: a failed read above content that is still shown."
+      "notes": "Supersedes loading, empty-state and elevation-required: those three stay in the contract until every kit implements state, then leave it in the next contract version. error-banner stays: a failed read above content that is still shown.",
+      "parts": {
+        "empty pane": "A pane with nothing to show (Mail's reading pane with no message open, Chat's conversation pane with no conversation open, a Drive folder with nothing in it) is never left blank: it draws the state component, kind empty, placement page, centred in the pane, from the node the server declares for it in the page's tree. The node's label is the title, its description the description, its icon the icon, and its action, where the tree gives one and its condition holds (Chat's New chat, Drive's Upload), the one action, run as the same action elsewhere on the page. The host adds no words of its own, and until the node is served it keeps the words it had. From tablet width up only: at phone width a pane with nothing in it is not shown, the list stands in its place."
+      }
     },
     "file-viewer": {
       "purpose": "One way to look at a file: over the page, with the same parts, states and keys whatever the file is and whichever kit draws it. What draws the file itself is an adapter chosen by its content type, so a new type adds an adapter and not a viewer.",
