@@ -4,6 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `list`, `selection` (components contract 0.12.0): a checked row's state is its checkbox's, and the count a status line; aria-multiselectable and aria-selected only where the list is a listbox or a grid, not on a list of rows each holding a button and a checkbox.
 ## 0.17.0 (2026-11-22)
 
 A list's selection, the same in every host. The components contract goes to 0.11.0.
