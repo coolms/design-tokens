@@ -400,6 +400,7 @@
         "section": "The chosen section, its own title at its top, its content below. Choosing another section changes the section and the address only.",
         "phone": "Below the tablet breakpoint the list and the section are not side by side: the list (with its head) is the screen; choosing a section shows it in the list's place, with a Back to the list. The address names the section, so a section can be opened directly."
       },
+      "empty": "No section is listed: the list says so in the page's words, and the section's place draws the empty pane (state, kind empty). Sections listed and none chosen yet: from tablet width up the first section opens, so the section's place is never blank; at phone width the list is the screen until one is chosen.",
       "notes": "From tablet width up the list's column is resizable (the pane splitter), between about 200 and 440px. A page with sections from a declared tree takes their labels, icons, order and conditions from it, and adds none of its own."
     },
     "screen-shell": {
