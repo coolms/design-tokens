@@ -4,6 +4,12 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.24.0 (2026-11-24)
+
+The icon contract goes to 0.9.0: the Mail header tree's icons are the workspace's too. The components contract stays 0.16.0.
+
+- Icon contract 0.9.0: `plus-lg` (Add mailbox), `gear` (Mail settings) and `upload` (Import) are used by the workspace's trees too, now that both interfaces read the Mail section's header tree; each lists admin and workspace.
+
 ## 0.23.0 (2026-11-24)
 
 List rows put their leading element on the first line, and an avatar is the row's checkbox. The components contract goes to 0.16.0.
