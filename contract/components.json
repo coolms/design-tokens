@@ -138,7 +138,7 @@
       ],
       "parts": {
         "keys": "A radio group named by what it filters: Tab enters at the chosen chip; Left/Right and Up/Down move to the next or the previous chip and choose it, wrapping at the ends; the chosen chip is checked (aria-checked).",
-        "overflow": "Chips that do not fit their row stay on one line and scroll sideways within it; they never wrap and never push the row taller. The edge where chips are clipped fades, at the start and at the end, only while there is more past that edge: a row whose chips fit shows no fade, and a row scrolled to one end shows none there. The fade follows the scroll (measured, never a fixed gradient), so the scrollbar may be hidden: the fade is what says there is more. Moving to a chip by key scrolls it fully into view."
+        "overflow": "Chips that do not fit their row stay on one line and scroll sideways within it; they never wrap and never push the row taller. The edge where chips are clipped fades, at the start and at the end, only while there is more past that edge: a row whose chips fit shows no fade, and a row scrolled to one end shows none there. The fade follows the scroll (measured, never a fixed gradient), so the scrollbar may be hidden: the fade is what says there is more. A chip reached by key, or chosen while partly clipped, scrolls fully into view."
       }
     },
     "avatar": {
