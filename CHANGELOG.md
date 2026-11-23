@@ -4,6 +4,12 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.20.0 (2026-11-23)
+
+Filter chips as a contract entry: one line, and a fade while more is past the edge. The components contract goes to 0.13.0.
+
+- `filter-chips` (components contract 0.13.0): a few filters of one list as a radio group of pills; chips that do not fit scroll sideways on one line, and the clipped edge fades at the start and the end only while there is more past it, following the scroll; a chip reached by key or chosen while partly clipped scrolls into view.
+
 ## 0.19.0 (2026-11-23)
 
 Two icon names for the workspace's empty panes. The icon list goes to 0.8.0.
