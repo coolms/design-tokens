@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.23.0 (2026-11-24)
+
+List rows put their leading element on the first line, and an avatar is the row's checkbox. The components contract goes to 0.16.0.
+
 - `list` (components contract 0.16.0): a row of two or more lines aligns its leading element (an icon, an avatar, a checkbox) to its first line, never to the row's centre: one no taller than the line centres on it, a taller one (an avatar) puts its top on the line's top. And in a row whose leading element is an avatar, the avatar is the row's checkbox: shown as the checkbox while the pointer is over the row or the focus is on it, and on every row once anything is checked; a tap on it toggles the check; a real checkbox, focusable, Space toggles it, named "Select: {sender}, {subject}", Shift and Ctrl/Cmd as in the row's selection. A row without an avatar keeps a plain checkbox; the select-all checkbox stays.
 
 ## 0.22.0 (2026-11-23)
