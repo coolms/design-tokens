@@ -4,6 +4,11 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `section-header` (components contract 0.14.0): the head of a section from tablet width up. Row 1 holds the section's declared title at the start and its primary action at the end (icon and label, always shown; a split ▾ menu when the action has entries), with More (⋯) for the section's other actions, a disabled one kept with the server's reason. Row 2 holds the section's context (a mailbox card, filters, a board switcher, breadcrumbs). The content columns draw their own first row on the same line. No divider lines, and no empty row in a column that has nothing for it. On a one-column page it spans the page and takes the place of `page-header`. Below tablet width the same declared title and primary action are the screen shell's bar title and floating action.
+- `pane-toolbar`: the header row's rule follows: a column with nothing for a row draws no row, and no line is drawn under a row; Mail's Compose is the section header's primary action, no longer the side column's first element.
+- `page-header`: superseded by `section-header` from tablet width up.
+- A convention for dates in rows and separators, in every component: the time (or the word for today) today, the word for yesterday, the weekday within the last week, the day and month earlier this year, and the full date before this year, in the person's chosen date format when they chose one.
+
 ## 0.20.0 (2026-11-23)
 
 Filter chips as a contract entry: one line, and a fade while more is past the edge. The components contract goes to 0.13.0.
