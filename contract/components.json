@@ -1,6 +1,6 @@
 {
   "$comment": "The components every CoolMS UI kit provides, by name, and the states each must render. A kit declares which of its components implements each entry (kit.contract.json); tools/check-kit.mjs fails when one is missing, or a state is. Names follow ui-angular's where it has one.",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "components": {
     "button": {
       "purpose": "An action. Primary, secondary, danger; an icon may lead.",
@@ -322,7 +322,7 @@
       ],
       "api": {
         "spaces": "the spaces the person may read, each with an id and a name to show, in the host's order. With one, no space switch is drawn",
-        "list": "list(space, path, cursor?) returns { entries, next? }: one page of a folder, in the host's order (folders first is the stated default), and next when more follow. Each entry has id, name, kind (folder or file), size and mimeType for a file. A refusal the host reports as denied, a failure as error",
+        "list": "list(space, path, cursor?) returns { entries, next? }: one page of a folder, in the host's order (folders first is the stated default), and next when more follow. Each entry has id, name, kind (folder or file), size and mimeType for a file. A refusal the host reports as denied, a failure as error, and a next page the server refused because its page link is no longer valid as restart",
         "disabledReason": "optional: disabledReason(entry) returns the host's own reason a file cannot be chosen (not readable, a type it will not send), or nothing. The kit shows the reason and never ticks such a file",
         "budget": "optional: { usedBytes, limitBytes, cost? }, what the host has spent of a limit before this choice, such as a message's size against its mailbox's limit. cost(entry) is what a file adds against that limit, the file's size when not given; a host whose limit counts something else, such as an encoded message, says so through cost. The kit computes what is left after the selection, and the files that would go over it",
         "confirmLabel": "the confirm action's words for a count, by key, such as \"Attach {count} files\"",
@@ -342,6 +342,7 @@
         "With a budget, a file that would take the selection over what is left is disabled with that reason, and over-budget is the state when the selection already does. This is computed in the kit from the budget and the selection, so every host behaves alike. The host's own disabledReason is shown first where both apply",
         "The confirm action is disabled with nothing chosen, and while over the budget",
         "Paging: when list gives next, the kit asks for the following page as the list nears its end, keeping what is shown; paging is the state while it does",
+        "Restart: when list reports restart for a next page, the kit drops the folder's pages and reads its first page again, as on opening it, showing loading in place of the list, and nothing is said to the person; the selection is kept, by entry id, across the restart, as across folders. A restart is tried once per reading of a folder: a second restart before a page has been read again shows error with Retry, so a server that keeps refusing cannot loop. The host reports restart only for the server's declared problem saying the page link is no longer valid (the server names it); any other refusal of a page is error with Retry, or denied",
         "States are the state component's, in placement block, inside the list: loading while a folder is read; empty for a folder with nothing in it; error with the host's words and Retry; denied for a folder the person may not open, shown in place, with no action, and the dialog stays open so another folder can be chosen",
         "Keys: the list is a listbox with aria-multiselectable. Up and Down move, Enter opens a folder, Space ticks a file, Backspace goes Up a folder, and Escape cancels. The breadcrumb is a nav. Every action can be reached by Tab, and has a visible focus and an accessible name",
         "Focus moves into the dialog on opening, onto the list, is held inside while open, and returns to what opened it on closing. role=\"dialog\", aria-modal=\"true\"",
@@ -514,6 +515,7 @@
   },
   "conventions": [
     "Dates and times, in every component: formatted in the interface language the person chose, never the browser's.",
-    "Dates in a row or a separator (a list's rows, a thread's date separators), in every component and host, one rule: today the time (a row) or the word for today (a separator); yesterday, as a word; within the last week the weekday; earlier this year the day and month; before this year the full date, in the date format the person chose when they chose one, else the interface language's own form. The words are the interface language's."
+    "Dates in a row or a separator (a list's rows, a thread's date separators), in every component and host, one rule: today the time (a row) or the word for today (a separator); yesterday, as a word; within the last week the weekday; earlier this year the day and month; before this year the full date, in the date format the person chose when they chose one, else the interface language's own form. The words are the interface language's.",
+    "Paged lists, in every component and host: a next page the server refuses because its page link is no longer valid (its declared problem) restarts the list from its first page, once, keeping what the person has selected by id; any other refusal is an error with Retry. The file manager, the file picker and every list that pages the server do this alike."
   ]
 }

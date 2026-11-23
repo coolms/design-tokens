@@ -4,6 +4,9 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `file-picker` (components contract 0.15.0): a restart outcome. When the host reports that the server refused a next page because its page link is no longer valid, the kit drops the folder's pages and reads the first page again, once, with the selection kept by entry id; a second restart before a page is read again is an error with Retry. Any other refusal stays an error with Retry, or denied.
+- A convention for paged lists in every component and host: the same restart, for the server's declared problem only, the selection kept by id.
+
 ## 0.21.0 (2026-11-23)
 
 A section header as a contract entry: a section's title and primary action on its first row, its context on the second, and dates in rows and separators by one rule. The components contract goes to 0.14.0.
