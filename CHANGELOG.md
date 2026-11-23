@@ -4,8 +4,9 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-- `file-picker` (components contract 0.15.0): a restart outcome. When the host reports that the server refused a next page because its page link is no longer valid, the kit drops the folder's pages and reads the first page again, once, with the selection kept by entry id; a second restart before a page is read again is an error with Retry. Any other refusal stays an error with Retry, or denied.
-- A convention for paged lists in every component and host: the same restart, for the server's declared problem only, the selection kept by id.
+- `file-picker` (components contract 0.15.0): a restart outcome. When the host reports that the server refused a next page because its page link is no longer valid (/errors/page-link-invalid, 409), the kit drops the folder's pages and reads the first page again, once, with the selection kept by entry id; a second restart before a page is read again is an error with Retry. Any other refusal stays an error with Retry, or denied.
+- A convention for paged lists in every component and host: the same restart, for that declared problem only, the selection kept by id.
+- `file-picker`'s `list` is in the server's order as the host receives it: folders first, never re-sorted in the kit or the host, since paging would sort only the pages loaded.
 
 ## 0.21.0 (2026-11-23)
 
