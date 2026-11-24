@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- Icon contract 0.10.0: `hash` (Browse channels, in Chat's list tree), listed for the admin and the workspace.
+
 ## 0.29.0 (2026-11-24)
 
 Button rules and one splitter: the components contract goes to 0.20.0. The icon contract stays 0.9.0.
