@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- Components contract 0.19.0: no empty menus (a convention). A menu button whose entries are all hidden by their showWhen is hidden itself; a disabled entry keeps it, disabled with the server's reason. `pane-toolbar`'s `entries` and `section-header`'s split primary say the same: with no entry shown, the primary is a plain button.
+
 ## 0.26.0 (2026-11-24)
 
 The screen layout per column, as corrected: the components contract goes to 0.18.0. The icon contract stays 0.9.0.
