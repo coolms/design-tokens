@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- Components contract 0.18.0: the screen layout rule as corrected, replacing 0.17.0's. Each column has two rows aligned across the screen: row 1 its actions (the first column's section-header, with the primary that acts on what that column shows; every other column's action bar for what it shows), row 2 where the person is (the mailbox card, the list's folder and filters, the message's subject, the folder's path). A folder's Upload, New folder and New are its action bar's, never the header's: with nothing selected the bar shows them, with a selection the actions on it and a count, its height fixed. pane-toolbar's `location` goes; an action may be a menu button (`entries`, New ▾). Filters are never cut off: where they do not fit beside the folder's name they go on their own line below, and wrap chip by chip rather than scroll (`filter-chips`, `overflow`; the header row takes that line).
+
 ## 0.25.0 (2026-11-24)
 
 One layout rule for every screen: the components contract goes to 0.17.0. The icon contract stays 0.9.0.
