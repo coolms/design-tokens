@@ -4,7 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-- Components contract 0.22.0: filter chips become one filter menu button. `filter-chips` is replaced by `filter-menu`: a menu button at the end of the row that names the list, an icon on the default choice, and the choice's name with a chevron and the accent on any other, so a filtered list never looks like one with rows missing; a single choice with a mark, from the list's declared choices. The name is cut with an ellipsis and the button keeps its place. `screen-shell`: no chips row; the filter is an icon in the bar beside search (with-filter), an active choice gives it the accent and the title reads the name and the choice (filtered).
+- Components contract 0.22.0: filter chips become one filter menu button. `filter-chips` is replaced by `filter-menu`: a menu button at the end of the row that names the list, an icon on the default choice, and the choice's name with a chevron and the accent on any other, so a filtered list never looks like one with rows missing; a single choice with a mark, from the list's declared choices. The name is cut with an ellipsis and the button keeps its place. `screen-shell`: no chips row; the filter is an icon in the bar beside search (with-filter), an active choice gives it the accent and the title reads the name and the choice (filtered). In a bar too narrow the title gives way first, and only then, where More is drawn for other actions, the filter moves into it (filter-in-more); no icon drops.
 
 ## 0.31.0 (2026-11-25)
 
