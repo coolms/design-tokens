@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.31.0 (2026-11-25)
+
+The phone screen shell's More: the components contract goes to 0.21.0. The icon contract stays 0.10.0.
+
 - Components contract 0.21.0: the phone screen shell's More. `screen-shell` gains `with-more`: an icon button in the bar, after the section's search and before the shell's own icons, opening the section header's secondary actions (Mail: Add mailbox, Mail settings, Import; Chat: Browse channels) from the same declaration and in the same order. It is drawn only while one of them is shown, so no empty menu is opened, and not on an item's own screen. `section-header` and `screen-shell` both say one declaration serves both widths.
 
 ## 0.30.0 (2026-11-24)
