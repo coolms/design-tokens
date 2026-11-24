@@ -4,6 +4,12 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.29.0 (2026-11-24)
+
+Button rules and one splitter: the components contract goes to 0.20.0. The icon contract stays 0.9.0.
+
+- Components contract 0.20.0: button rules and one splitter. `button` gains `quiet` (icon and label, no border, no fill, a hover background, a destructive action in the danger colour), the Workspace's action bars' style; at most one filled button per screen, in the Workspace only the first column's section-header primary (replacing 0.18.0's "a folder's Upload is the screen's one filled button"; the admin keeps its icon-only bar and its filled Upload); every button's corners are --cms-radius-control. A new `splitter` entry: every column split resizable through it, the width remembered on the device, a double-click resetting it, the keyboard moving it (role separator, arrow keys).
+
 ## 0.28.0 (2026-11-24)
 
 The cn operator in the shared condition cases (conditions 1.1.0). The components contract stays 0.19.0. The icon contract stays 0.9.0.
