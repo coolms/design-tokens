@@ -4,7 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-- Components contract 0.19.0: no empty menus (a convention). A menu button whose entries are all hidden by their showWhen is hidden itself; a disabled entry keeps it, disabled with the server's reason. `pane-toolbar`'s `entries` and `section-header`'s split primary say the same: with no entry shown, the primary is a plain button.
+- Components contract 0.19.0: no empty menus (a convention). A menu button with no entry to show (each hidden by its showWhen, or one the host does not run) is hidden itself; a disabled entry is shown with its own reason, and the button stays enabled unless its own node's condition disables it. `pane-toolbar`'s `entries` and `section-header`'s split primary say the same: with no entry shown, the primary is a plain button.
 
 ## 0.26.0 (2026-11-24)
 
