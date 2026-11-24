@@ -4,6 +4,8 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+- `contract/conditions.json`: the shared cases for a NaviGraph condition (showWhen, disabledWhen, busyWhen, activeWhen), run by every evaluator: 37 cases over eq, ne, in, nin, startsWith and and/or, the strict missing-field rule and an unknown operator included.
+
 ## 0.26.0 (2026-11-24)
 
 The screen layout per column, as corrected: the components contract goes to 0.18.0. The icon contract stays 0.9.0.
