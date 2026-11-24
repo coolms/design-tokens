@@ -4,6 +4,10 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+## 0.28.0 (2026-11-24)
+
+The cn operator in the shared condition cases (conditions 1.1.0). The components contract stays 0.19.0. The icon contract stays 0.9.0.
+
 - `contract/conditions.json` 1.1.0: the `cn` operator, a member of a list: it holds when the field is a list with an item strictly equal to the value, never a substring; a missing, null or non-list field never holds. 10 cases, 47 in all.
 
 ## 0.27.0 (2026-11-24)
