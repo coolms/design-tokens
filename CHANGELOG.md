@@ -4,7 +4,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-- Components contract 0.17.0: one layout rule for every screen (a convention). The section-header sits at the top of the screen's first column; the content's first row is a pane-toolbar with where the person is at its start (its new `location`) and the action bar at its end (the actions on the selection, then the view controls), its height fixed whatever is selected; creates are entries of the primary's split menu, never actions of the bar; an action the person cannot use here stays visible and disabled with the server's reason.
+- Components contract 0.17.0: one layout rule for every screen (a convention). The section-header sits at the top of the screen's first column; the content's first row is a pane-toolbar with where the person is at its start (its new `location`) and the action bar at its end (the actions on the selection, then the view controls), its height fixed whatever is selected; creates are entries of the primary's split menu, never actions of the bar; an action that applies here but the person cannot use stays visible and disabled with the server's reason, and one that does not apply here is absent.
 
 ## 0.24.0 (2026-11-24)
 
