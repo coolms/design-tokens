@@ -6,6 +6,7 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 Message inputs: the components contract goes to 0.23.0. The icon contract stays 0.10.0.
 
+- Components contract 0.23.0: a section header never wraps (`section-header`, `width`). When the room runs short the description hides, then the title is cut down to 64px, then the primary keeps its icon alone, and only where the icon does not fit does it move into More. `description` is new; so are the states `with-description`, `primary-icon` and `primary-in-more`.
 - Components contract 0.23.0: message inputs (a convention). Chat's composer, a thread's reply, the quick chat panel's field and Mail's quick reply draw no focus ring: the input's own edge is `--cms-border-input` at rest and `--cms-border-input-focus` while the text has the focus, at one width. Buttons keep their rings, and every other field keeps the focus ring.
 - `--cms-border-input-focus` is new: about 3:1 against `--cms-border-input` (3.28 light, 2.72 dark).
 
