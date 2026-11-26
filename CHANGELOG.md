@@ -4,6 +4,11 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
+The header's last step and links in a message: the components contract goes to 0.24.0. The icon contract stays 0.10.0.
+
+- Components contract 0.24.0: `section-header`, `width`, a last step: where nothing else may give way, the title at its floor, the chips that are the only place on the page their fact appears are cut with an ellipsis, the last first, each keeping its full text as its tooltip and accessible name. Never a wrap. The state `meta-cut` is new.
+- Components contract 0.24.0: links in a message (a convention). A link in a chat message is a plain `<a href>`: an outside address, or the public address of something in the installation; only http, https and mailto, enforced by the server on write.
+
 ## 0.33.0 (2026-11-26)
 
 A section header on one line, message inputs, line breaks in a message: the components contract goes to 0.23.0. The icon contract stays 0.10.0.
