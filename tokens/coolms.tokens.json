@@ -877,6 +877,16 @@
             },
             "$description": "A field's boundary: 3:1 against its background (WCAG 1.4.11)."
         },
+        "border-input-focus": {
+            "$type": "color",
+            "$value": "#374151",
+            "$extensions": {
+                "org.coolms": {
+                    "dark": "#c9d3e0"
+                }
+            },
+            "$description": "A message input's boundary while its text has the focus: about 3:1 against border-input, its boundary at rest (3.28 light, 2.72 dark), and over 10:1 against the field."
+        },
         "success-strong": {
             "$type": "color",
             "$value": "#15803d",
