@@ -4,7 +4,9 @@ All notable changes to the design tokens are listed here. Versions follow [seman
 
 ## Unreleased
 
-The header's last step, links in a message, last opened, and header actions that give way: the components contract goes to 0.24.0. The icon contract stays 0.10.0.
+## 0.34.0 (2026-11-28)
+
+The header's last step, links in a message, last opened, and header actions that give way in one rule for every row: the components contract goes to 0.24.0. The icon contract stays 0.10.0.
 
 - Components contract 0.24.0: header actions give way in steps, and only the last reaches More (`section-header`, `pane-toolbar`). The section header's other actions are `secondary`: quiet buttons in row 1 while they fit (`more` is read as `secondary` for one release). After the description, the chips and the title, the secondary actions drop their labels one by one in their giving-way order, then the primary drops its label and keeps its colour, then the secondary actions move into More, and the primary last. `pane-toolbar` gains `primary` and the same order. More never holds one action: the first move into an empty More takes two, or one beside a menu-only action, and a single menu-only action is a button at the end of the row. More's order, in both: the primary, then those that gave way, then the menu-only last. One rule for every row of actions: a pane's row, a page's toolbar (the admin's Documents, Media Library and every other page toolbar, icon-only until now) and a section's header give way by the same steps, and no host keeps labels hidden at rest. Section-header's row 1 is a toolbar with one Tab stop. The states `with-secondary`, `secondary-icon`, `secondary-in-more` and `lone-menu-only` are new; `with-more` now means two or more behind More.
 - Components contract 0.24.0: `section-header`, `width`, a last step: where nothing else may give way, the title at its floor, the chips that are the only place on the page their fact appears are cut with an ellipsis, the last first, each keeping its full text as its tooltip and accessible name. Never a wrap. The state `meta-cut` is new.
